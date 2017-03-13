@@ -12,16 +12,34 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
   box-sizing: border-box;
 }
 body{
-
+background: url('../images/lake.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+z-index: 1;
+background-color: opacify(grey, .9);
+}
+.signin{
+  float: right;
+}
+.signup{
+  float: right;
 }
 
 img {
   max-width: 100%;
 }
+h1{
+  color: black;
+}
+
 
 .thumbnail{
   width: 200px;
   height: 300px;
+}
+.logo{
+  width: 150px;
+  height: 40px;
 }
 
 

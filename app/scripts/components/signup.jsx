@@ -6,44 +6,37 @@ var LoginLayout = require('./layouts/login.jsx').LoginLayout;
 
 var User = require('../models/user.js').User;
 
-class LoginContainer extends React.Component{
+class SignupContainer extends React.Component{
   constructor(props){
     super(props);
-    this.login = this.login.bind(this);
   }
-  login(creds){
-    User.login(creds, function(){
+
+  createAccount(creds){
+    var user = new User(creds);
+    user.save().then(function(data){
+      localStorage.setItem('user', JSON.stringify(data));
       Backbone.history.navigate('braggingrites/', {trigger: true});
     })
   }
-  // createAccount(creds){
-  //   var user = new User(creds);
-  //   user.save().then(function(data){
-  //     localStorage.setItem('user', JSON.stringify(data));
-  //     Backbone.history.navigate('braggingrites/', {trigger: true});
-  //   })
-  // }
-
 
   render(){
+    console.log('here');
     return(
     <LoginLayout isUserLoggedIn={true}>
       <div className="container">
         <div className="row">
           <div className="col-md-5">
-              <h1 className="welcome">Allready a member Log In</h1>
-              <LoginForm action={this.login} submitBtn="Login" />
+              <h1 className="welcome">Sign Up</h1>
+              <SignupForm action={this.createAccount} submitBtn="Create Account"/>
           </div>
-          
         </div>
       </div>
-
     </LoginLayout>
   )
 }
 }
 
-class LoginForm extends React.Component {
+class SignupForm extends React.Component {
   constructor(props){
     super(props);
 
@@ -83,10 +76,6 @@ class LoginForm extends React.Component {
   }
 }
 
-// class SignUpForm extends LoginForm {
-//
-// }
-
 module.exports = {
-  LoginContainer
+  SignupContainer
 };

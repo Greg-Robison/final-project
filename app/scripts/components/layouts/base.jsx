@@ -17,12 +17,12 @@ return (
 }
 function Header(props){
   return(
-    <h1 className="welcome text-center">Welcome to Greg's Fishing App</h1>
+    <h1 className="welcome text-center">Anglers Friend</h1>
   );
 }
 function AnonHeader(props){
   return(
-    <h1>Please Signin To Use Greg's Fishing App</h1>
+    <h1>Please Signin To Use Anglers Friend</h1>
   );
 }
 module.exports = {
