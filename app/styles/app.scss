@@ -1,0 +1,39 @@
+
+// Bootstrap Variables
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+// Import Bootstrap
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body{
+
+}
+
+img {
+  max-width: 100%;
+}
+
+.thumbnail{
+  width: 200px;
+  height: 300px;
+}
+
+
+.scum{
+  font-size: 125px;
+  color: #967963;
+}
+.sub-scum{
+  font-size: 75px;
+  color: white;
+}
+.login{
+  color: white;
+
+}
