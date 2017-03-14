@@ -5790,6 +5790,9 @@ img {
 h1 {
   color: black; }
 
+.well {
+  opacity: 0.6; }
+
 .thumbnail {
   width: 200px;
   height: 300px; }
@@ -5812,6 +5815,14 @@ h1 {
   color: white; }
 
 .login {
+  color: white; }
+
+.logo-button {
+  height: 60px;
+  width: 60px;
+  background-color: purple; }
+
+.click {
   color: white; }
 
 /*# sourceMappingURL=app.css.map */
