@@ -42,11 +42,13 @@ class SignupForm extends React.Component {
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      name: ''
     };
   }
   handleEmailChange(e){
@@ -55,6 +57,9 @@ class SignupForm extends React.Component {
   handlePasswordChange(e){
     this.setState({password: e.target.value});
     }
+    handleNameChange(e){
+      this.setState({name: e.target.value});
+      }
   handleSubmit(e){
     e.preventDefault();
     this.props.action(this.state);
@@ -68,6 +73,9 @@ class SignupForm extends React.Component {
         </div>
         <div className="form-group">
           <input onChange={this.handlePasswordChange} className="form-control" name="password" id="password-login" type="password" placeholder="Password Please" />
+        </div>
+        <div className="form-group">
+          <input onChange={this.handleNameChange} className="form-control" name="name" id="name-login" type="name" placeholder="Name" />
         </div>
         <input className="btn btn-primary" type="submit" value={this.props.submitBtn} />
 

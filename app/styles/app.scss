@@ -41,7 +41,9 @@ img {
 h1{
   color: black;
 }
-
+.well{
+  opacity: 0.6;
+}
 
 .thumbnail{
   width: 200px;
@@ -68,5 +70,12 @@ h1{
 }
 .login{
   color: white;
-
+}
+.logo-button{
+  height: 60px;
+  width: 60px;
+  background-color: purple;
+}
+.click{
+  color: white;
 }

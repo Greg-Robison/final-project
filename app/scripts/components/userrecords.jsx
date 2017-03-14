@@ -9,6 +9,7 @@ class UserRecords extends React.Component {
           <div className="row">
             <div className="col-md-12">
               <h1>This is where the User records will go</h1>
+              
             </div>
           </div>
 
