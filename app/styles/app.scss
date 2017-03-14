@@ -18,11 +18,21 @@ background-repeat: no-repeat;
 z-index: 1;
 background-color: opacify(grey, .9);
 }
-.signin{
+.links{
   float: right;
+  padding-left: 20px;
+
+}
+.signin{
+
+  float: right;
+  border-style: outset;
+  border-radius: 0px
 }
 .signup{
   float: right;
+  border-style: outset;
+  border-radius: 0px
 }
 
 img {
@@ -39,7 +49,12 @@ h1{
 }
 .logo{
   width: 150px;
-  height: 40px;
+  height: 60px;
+}
+.logo-bottom{
+  position: relative;
+  width: 600px;
+  height: 250px;
 }
 
 

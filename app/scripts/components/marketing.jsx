@@ -7,18 +7,18 @@ class Marketing extends React.Component {
   render(){
     return(
       <div className="container">
-      <h1>Well Hello There</h1>
-        <nav className="navbar navbar-default navbar-fixed-bottom">
+
+
     <div className="container-fluid">
-      <div className="navbar-header">
-        <a className="navbar-brand" href="#">
-          <img className="logo" alt="Brand" src="images/logo.png" />
+      <div className="row fixed-bottom">
+        <a className="logo-bottom" href="#">
+          <img className="logo-bottom" alt="Brand" src="images/logo1.png" />
         </a>
-        <span><a href="#login/"><button className="signin btn btn-primary">Sign In</button></a></span>
-        <span><a href="#signup/"><button className="signup btn btn-primary">Sign Up</button></a></span>
+        <span className="signin"><a href="#login/"><button className="signin btn btn-primary">Sign In</button></a></span>
+        <span className="signup"><a href="#signup/"><button className="signup btn btn-primary">Sign Up</button></a></span>
       </div>
     </div>
-  </nav>
+    
 
       </div>
      )
