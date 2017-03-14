@@ -5763,12 +5763,45 @@ button.close {
 *::after {
   box-sizing: border-box; }
 
+body {
+  background: url("../images/lake.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+  background-color: gray; }
+
+.links {
+  float: right;
+  padding-left: 20px; }
+
+.signin {
+  float: right;
+  border-style: outset;
+  border-radius: 0px; }
+
+.signup {
+  float: right;
+  border-style: outset;
+  border-radius: 0px; }
+
 img {
   max-width: 100%; }
+
+h1 {
+  color: black; }
 
 .thumbnail {
   width: 200px;
   height: 300px; }
+
+.logo {
+  width: 150px;
+  height: 60px; }
+
+.logo-bottom {
+  position: relative;
+  width: 600px;
+  height: 250px; }
 
 .scum {
   font-size: 125px;
@@ -5780,4 +5813,5 @@ img {
 
 .login {
   color: white; }
+
 /*# sourceMappingURL=app.css.map */
