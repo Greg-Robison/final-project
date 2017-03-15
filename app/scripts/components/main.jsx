@@ -81,7 +81,7 @@ class BragBoard extends React.Component {
     <div className="container">
       <div className="row">
         <form encType="multipart/form-data">
-        <input type="file" accept=".jpeg, .jpg, .gif" onChange={this.handleImageChange} /><br />
+        <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />
           <img src={this.state.preview} height="250" width="200" alt="Your Brag Picture Goes Here" />
             <button className="logo-button" onClick={this.handleUpload}><img src="./images/logo2.png"/></button>
             <h2 className="click">Click Icon to Upload</h2>
