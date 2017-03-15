@@ -12,11 +12,11 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
   box-sizing: border-box;
 }
 body{
-background: url('../images/lake.jpg');
-background-size: cover;
+background: url('../images/lake5.jpeg');
+background-size: contain;;
 background-repeat: no-repeat;
 z-index: 1;
-background-color: opacify(grey, .9);
+background-color: grey;
 }
 .links{
   float: right;
@@ -74,8 +74,15 @@ h1{
 .logo-button{
   height: 60px;
   width: 60px;
-  background-color: purple;
+  background-color: #AF57EE;
 }
 .click{
+  color: #AF57EE;
+}
+.spacer{
+  height: 450px;
+
+}
+.hype{
   color: white;
 }
