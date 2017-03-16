@@ -12,11 +12,22 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
   box-sizing: border-box;
 }
 body{
-background: url('../images/lake5.jpeg');
-background-size: contain;;
-background-repeat: no-repeat;
-z-index: 1;
+// background: url('../images/lake5.jpeg');
+// background-size: contain;;
+// background-repeat: no-repeat;
+// z-index: 1;
 background-color: grey;
+}
+.lake5{
+  position: absolute;
+  width: 1300px;
+  height: 650px;
+}
+.lake4{
+  position: absolute;
+  width: 1300px;
+  height: 1300px;
+  z-index: -1;
 }
 .links{
   float: right;
@@ -42,9 +53,11 @@ background-color: grey;
   border-style: none;
   border-radius: 5px
 }
-.button-img{
-  height: 30;
-  width: 30;
+.upload{
+  padding-top: 5px;
+  background-color: #9C00F9;
+  border-style: none;
+  border-radius: 5px
 }
 
 img {

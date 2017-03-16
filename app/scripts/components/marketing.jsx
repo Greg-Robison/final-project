@@ -20,6 +20,18 @@ class Marketing extends React.Component {
 
   render(){
     return(
+      <div className="wrapper">
+
+        <img className="lake5" src="./images/lake5.jpeg" alt="" />
+          <div className="col-md-12">
+              <div className="well">
+                  <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
+                  <span className="links"><a href=""> Sign Off</a></span>
+                  <span className="links"><a href="#userrecords/"> User Records</a></span>
+                  <span className="links"><a href="#publicrecords/"> Public Records</a></span>
+                  <span className="links"><a href="#braggingrites/"> Recent Catches</a></span>
+              </div>
+          </div>
       <div className="container">
         <div className="row">
             <span className="signup"><a href="#signup/"><button className="signup-btn btn btn-primary"><img src="./images/button-logo1.png"/>Sign Up</button></a></span>
@@ -37,6 +49,7 @@ class Marketing extends React.Component {
           <span className="weather-span">Wind Dir<p>{this.state.weather.get('wind_dir')}</p></span>
           <span className="weather-span">Wind Speed<p>{this.state.weather.get('wind_mph')} mph</p></span>
           <span className="weather-span">Temperature<p>{this.state.weather.get('temp_f')}</p></span>
+          <span className="weather-span"><img src={this.state.weather.get('icon_url')}/></span>
         </div>
       </div>
 
@@ -137,9 +150,8 @@ Hawk offers this closing tip:
 
       </div>
     </div>
-
-
-      </div>
+  </div>
+  </div>
      )
   }
 };

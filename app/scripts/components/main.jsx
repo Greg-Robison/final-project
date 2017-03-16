@@ -58,6 +58,7 @@ class BragBoard extends React.Component {
       });
       // console.log('fishPic', fishPic);
       fishPic.save();
+      this.forceUpDate();
     });
   }
 
@@ -65,6 +66,8 @@ class BragBoard extends React.Component {
     render() {
       var images = this.state.collection.map(function(image){
         return (
+          <div className="wrapper">
+
           <div className="col-sm-6 col-md-4">
           <div className="thumbnail" key={image.cid}>
             <a href={image.get('image')}><img src={image.get('image')} alt="..." /></a>
@@ -76,27 +79,37 @@ class BragBoard extends React.Component {
             </div>
           </div>
           </div>
+          </div>
         )
 
       })
         return (
-    <div className="container">
+    <div>
+      <img className="lake4" src="./images/lake4.jpg" alt="" />
+      <div className="container">
+        <div className="row">
+        <div className="col-md-12">
+            <div className="well">
+                <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
+                <span className="links"><a href=""> Sign Off</a></span>
+                <span className="links"><a href="#userrecords/"> User Records</a></span>
+                <span className="links"><a href="#publicrecords/"> Public Records</a></span>
+                <span className="links"><a href="#braggingrites/"> Recent Catches</a></span>
+            </div>
+        </div>
+        </div>
+
       <div className="row">
         <form encType="multipart/form-data">
-        <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />
+          <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />
           <img src={this.state.preview} height="250" width="200" alt="Your Brag Picture Goes Here" />
-            <button className="logo-button" onClick={this.handleUpload}><img src="./images/logo2.png"/></button>
-            <h2 className="click">Click Icon to Upload</h2>
-            </form>
-              <div className="row">
-
-
-                  {images}
-
-              </div>
-              <span><a href="#publicrecords/"><button className="signin btn btn-primary">Public Records</button></a></span>
+        </form>
+          <span className="upload"><button className="signup-btn btn btn-primary" onClick={this.handleUpload}><img src="./images/button-logo1.png"/>Upload Photo</button></span>
       </div>
-
+      <div className="row">
+        {images}
+      </div>
+    </div>
     </div>
 
 
