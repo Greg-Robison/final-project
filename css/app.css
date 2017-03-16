@@ -5764,25 +5764,46 @@ button.close {
   box-sizing: border-box; }
 
 body {
-  background: url("../images/lake5.jpeg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 1;
   background-color: grey; }
+
+.lake5 {
+  position: absolute;
+  width: 1300px;
+  height: 650px; }
+
+.lake4 {
+  position: absolute;
+  width: 1300px;
+  height: 1300px;
+  z-index: -1; }
 
 .links {
   float: right;
-  padding-left: 20px; }
+  padding-left: 20px;
+  font-size: 20px; }
 
 .signin {
-  float: right;
-  border-style: outset;
-  border-radius: 0px; }
+  margin-right: 20px;
+  float: right; }
 
 .signup {
-  float: right;
-  border-style: outset;
-  border-radius: 0px; }
+  float: right; }
+
+.signin-btn {
+  background-color: #9C00F9;
+  border-style: none;
+  border-radius: 5px; }
+
+.signup-btn {
+  background-color: #9C00F9;
+  border-style: none;
+  border-radius: 5px; }
+
+.upload {
+  padding-top: 5px;
+  background-color: #9C00F9;
+  border-style: none;
+  border-radius: 5px; }
 
 img {
   max-width: 100%; }
@@ -5826,9 +5847,19 @@ h1 {
   color: #AF57EE; }
 
 .spacer {
-  height: 450px; }
+  height: 260px; }
 
 .hype {
   color: white; }
+
+.weather-span {
+  float: right;
+  font-size: 20px;
+  color: orange;
+  padding-left: 20px; }
+
+.news {
+  height: 250px;
+  overflow: scroll; }
 
 /*# sourceMappingURL=app.css.map */
