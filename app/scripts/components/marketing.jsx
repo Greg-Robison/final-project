@@ -1,21 +1,51 @@
 var $ = require('jquery');
 var React = require('react');
 var Backbone = require('backbone');
-
+var Wunderground = require('../models/wunderground').Wunderground;
 
 class Marketing extends React.Component {
+  constructor(props){
+    super(props);
+    var weather = new Wunderground;
+    weather.fetch().then(()=>{
+      console.log(weather);
+      this.setState({weather});
+    })
+    this.state = {
+      weather
+    };
+
+  }
+
+
   render(){
     return(
       <div className="container">
+        <div className="row">
+            <span className="signup"><a href="#signup/"><button className="signup-btn btn btn-primary"><img src="./images/button-logo1.png"/>Sign Up</button></a></span>
+              <span className="signin"><a href="#login/"><button className="signin-btn btn btn-primary"><img src="./images/button-logo1.png"/>Sign In</button></a></span>
+
+    </div>
+      <div className="row">
+        <div className="weather col-md-12">
+          <span className="weather-span">Moon Phase<p>.75 Waxing</p></span>
+          <span className="weather-span">
+            Barometric Pressure
+            <p>{this.state.weather.get('pressure_in')}</p>
+            <p>{this.state.weather.get('pressure_trend') == "+" ? "Rising": 'Falling'}</p>
+          </span>
+          <span className="weather-span">Wind Dir<p>{this.state.weather.get('wind_dir')}</p></span>
+          <span className="weather-span">Wind Speed<p>{this.state.weather.get('wind_mph')} mph</p></span>
+          <span className="weather-span">Temperature<p>{this.state.weather.get('temp_f')}</p></span>
+        </div>
+      </div>
 
 
     <div className="container-fluid">
-      <div className="row fixed-bottom">
+      <div className="row">
         <a className="logo-bottom" href="#">
           <img className="logo-bottom" alt="Brand" src="images/logo1.png" />
         </a>
-        <span className="signin"><a href="#login/"><button className="signin btn btn-primary">Sign In</button></a></span>
-        <span className="signup"><a href="#signup/"><button className="signup btn btn-primary">Sign Up</button></a></span>
       </div>
     </div>
     <div className="spacer">
@@ -25,7 +55,7 @@ class Marketing extends React.Component {
       <div className="col-md-4 hype">
         <h2>Fishing News</h2>
         <h3>Get To The Point For Pre-Spawners</h3>
-          <p>
+          <p className="news">
             Roy Hawk’s an easy-going guy, but when it comes to pre-spawn fishing, he knows how to make his point. Focused on the natural staging areas, the Arizona pro knows that primary and secondary points, along with their related pockets and underwater structure, are critical for engaging fish that are staging for their forthcoming spawning migrations.
 Essentially, as bass follow the lake’s natural contour, points serve as a crossroads between two distinct depth zones. Steeper points are usually best, as proximity to deep water allows fish to quickly adjust for weather changes. Hawk elaborates:
 “You have these big schools out in the main channel of a lake and as you get closer to the spawn, those schools come in along the contours, or maybe some standing timber,” he said. “But then, those schools start to break up and they get into smaller packs of two to five fish and they set up on those secondary points.
@@ -65,9 +95,6 @@ For one thing, fewer fish means less chance of catching one by dropping a lure i
 Hawk offers this closing tip:
 “A lot of times, if you catch one or two fish off a spot, it really goes dead. Especially in really clear water, but also in off-colored water, they get conditioned and they stop biting. By rotating through spots, you’re going to utilize your time better.
 “If you leave, let the fish reposition and then come back – you’ll have more success. You’ll have new fish that rolled in and got set up on that point, plus the ones that were there got repositioned in more favorable positions.”
-
-
-Read more: 'http://www.bassfan.com/news_article/7820/get-to-the-point-for-pre-spawners#.WMk9ThLytPM#ixzz4bOr08CYM'
           </p>
       </div>
       <div className="col-md-4 hype">

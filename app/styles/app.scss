@@ -21,18 +21,30 @@ background-color: grey;
 .links{
   float: right;
   padding-left: 20px;
-
+  font-size: 20px;
 }
 .signin{
-
+  margin-right: 20px;
   float: right;
-  border-style: outset;
-  border-radius: 0px
+
 }
 .signup{
   float: right;
-  border-style: outset;
-  border-radius: 0px
+
+}
+.signin-btn{
+  background-color: #9C00F9;
+  border-style: none;
+  border-radius: 5px
+}
+.signup-btn{
+  background-color: #9C00F9;
+  border-style: none;
+  border-radius: 5px
+}
+.button-img{
+  height: 30;
+  width: 30;
 }
 
 img {
@@ -80,9 +92,19 @@ h1{
   color: #AF57EE;
 }
 .spacer{
-  height: 450px;
+  height: 260px;
 
 }
 .hype{
   color: white;
+}
+.weather-span{
+  float: right;
+  font-size: 20px;
+  color: orange;
+  padding-left: 20px;
+}
+.news{
+  height: 250px;
+  overflow: scroll;
 }

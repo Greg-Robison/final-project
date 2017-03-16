@@ -65,6 +65,7 @@ class BragBoard extends React.Component {
     render() {
       var images = this.state.collection.map(function(image){
         return (
+          <div className="col-sm-6 col-md-4">
           <div className="thumbnail" key={image.cid}>
             <a href={image.get('image')}><img src={image.get('image')} alt="..." /></a>
             <div className="caption">
@@ -73,6 +74,7 @@ class BragBoard extends React.Component {
               <p><a href="#" className="btn btn-primary" role="button">Comment</a> <a href="#" className="btn btn-default" role="button">Delete</a></p>
 
             </div>
+          </div>
           </div>
         )
 
@@ -88,9 +90,9 @@ class BragBoard extends React.Component {
             </form>
               <div className="row">
 
-                <div className="col-sm-6 col-md-4">
+
                   {images}
-                </div>
+
               </div>
               <span><a href="#publicrecords/"><button className="signin btn btn-primary">Public Records</button></a></span>
       </div>
