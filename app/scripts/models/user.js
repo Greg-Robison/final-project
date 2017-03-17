@@ -21,7 +21,8 @@ urlRoot: function(){
   },
   singup: function(creds){
     var newUser = new User(creds);
-    newUser.save().then(() => {
+    newUser.save().then((response) => {
+      console.log('response', response);
       User.store(newUser);
     });
     return newUser;

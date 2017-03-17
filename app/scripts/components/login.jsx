@@ -26,6 +26,7 @@ class LoginContainer extends React.Component{
 
 
   render(){
+    console.log('here');
     return(
       <div className="wrapper">
         <img className="lake3" src="./images/lake3.jpg" alt="" />

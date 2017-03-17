@@ -13,7 +13,9 @@ class SignupContainer extends React.Component{
 
   createAccount(creds){
     var user = new User(creds);
+    console.log('creds', creds);
     user.save().then(function(data){
+      data.name = creds.name;
       localStorage.setItem('user', JSON.stringify(data));
       Backbone.history.navigate('braggingrites/', {trigger: true});
     })

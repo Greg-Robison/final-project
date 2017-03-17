@@ -9,7 +9,7 @@ var BragBoard = require('./components/main.jsx').BragBoard;
 var Marketing = require('./components/marketing.jsx').Marketing;
 var PublicRecords = require('./components/publicrecords.jsx').PublicRecords;
 var UserRecords = require('./components/userrecords.jsx').UserRecords;
-
+var User = require('./models/user').User;
 var AppRouter = Backbone.Router.extend({
   routes:{
     "": 'index',
@@ -24,6 +24,18 @@ var AppRouter = Backbone.Router.extend({
       BASE_API_URL: 'https://robison.herokuapp.com'
     });
   },
+execute: function(callback, args, name){
+  var user = User.current();
+
+  if(!user && name == 'login' || !user && name == 'signup') {
+
+  } else if (!user && name != 'index'){
+    this.navigate("", {trigger: true});
+    return false;
+  }
+  return Backbone.Router.prototype.execute.apply(this, arguments);
+},
+
   index: function(){
     ReactDOM.render(
       React.createElement(Marketing),

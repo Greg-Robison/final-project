@@ -20,18 +20,14 @@ class Marketing extends React.Component {
     };
 
   }
-
-
   render(){
     var user = User.current();
-
-
     return(
       <div className="wrapper">
 
         <img className="lake5" src="./images/lake6.jpg" alt="" />
           <div className="col-md-12">
-              <Header></Header>
+              { user ? <Header></Header> : null }
           </div>
       <div className="container">
         <div className="row">

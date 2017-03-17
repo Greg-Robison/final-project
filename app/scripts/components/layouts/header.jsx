@@ -9,7 +9,7 @@ class Header extends React.Component {
     super(props);
 
     this.logOut = this.logOut.bind(this);
-}
+  }
   logOut(e) {
     e.preventDefault();
     // ajax call to parse logout endpoint
