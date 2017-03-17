@@ -5,6 +5,7 @@ var Backbone = require('backbone');
 var ParseFile = require('../models/parsefile').ParseFile;
 var FishPicCollection = require('../models/fishpic').FishPicCollection;
 var FishPic = require('../models/fishpic').FishPic;
+var User = require('../models/user').User;
 
 class BragBoard extends React.Component {
   constructor(props){
@@ -64,12 +65,14 @@ class BragBoard extends React.Component {
 
 
     render() {
+      var user = User.current();
+
       var images = this.state.collection.map(function(image){
         return (
-          <div className="wrapper">
+          <div key={image.cid} className="wrapper">
 
           <div className="col-sm-6 col-md-4">
-          <div className="thumbnail" key={image.cid}>
+          <div className="thumbnail">
             <a href={image.get('image')}><img src={image.get('image')} alt="..." /></a>
             <div className="caption">
               <p>Thumbnail label</p>
@@ -91,7 +94,7 @@ class BragBoard extends React.Component {
         <div className="col-md-12">
             <div className="well">
                 <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
-                <span className="links"><a href=""> Sign Off</a></span>
+                <span className="links"><h4>{user.get('name')}</h4><a href=""> Sign Off</a></span>
                 <span className="links"><a href="#userrecords/"> User Records</a></span>
                 <span className="links"><a href="#publicrecords/"> Public Records</a></span>
                 <span className="links"><a href="#braggingrites/"> Recent Catches</a></span>

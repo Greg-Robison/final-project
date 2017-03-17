@@ -21,12 +21,25 @@ background-color: grey;
 .lake5{
   position: absolute;
   width: 1300px;
-  height: 650px;
+  height: 800px;
+  z-index: -1;
 }
 .lake4{
   position: absolute;
   width: 1300px;
   height: 1300px;
+  z-index: -1;
+}
+.lake3{
+  position: absolute;
+  width: 1300px;
+  height: 850px;
+  z-index: -1;
+}
+.lake2{
+  position: absolute;
+  width: 1300px;
+  height: 850px;
   z-index: -1;
 }
 .links{

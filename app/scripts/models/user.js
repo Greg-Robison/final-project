@@ -13,6 +13,7 @@ urlRoot: function(){
   login: function(cridentials, callback){
     var url = parse.BASE_API_URL + '/login?' + $.param(cridentials);
     $.get(url).then(data => {
+      // console.log('signin', data);
       var newUser = new User(data);
       User.store(newUser);
       callback(newUser);
@@ -24,6 +25,10 @@ urlRoot: function(){
       User.store(newUser);
     });
     return newUser;
+  },
+  logout: function(){
+    var url = parse.BASE_API_URL + '/logout?';
+    $.post(url).then(event=>console.log('logged out'));
   },
   store: function(user){
     localStorage.setItem('user', JSON.stringify(user.toJSON()));

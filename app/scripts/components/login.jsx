@@ -27,6 +27,9 @@ class LoginContainer extends React.Component{
 
   render(){
     return(
+      <div className="wrapper">
+        <img className="lake3" src="./images/lake3.jpg" alt="" />
+
     <LoginLayout isUserLoggedIn={true}>
       <div className="container">
         <div className="row">
@@ -39,6 +42,7 @@ class LoginContainer extends React.Component{
       </div>
 
     </LoginLayout>
+    </div>
   )
 }
 }
@@ -49,7 +53,7 @@ class LoginForm extends React.Component {
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    
+
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
@@ -79,8 +83,8 @@ class LoginForm extends React.Component {
         <div className="form-group">
           <input onChange={this.handlePasswordChange} className="form-control" name="password" id="password-login" type="password" placeholder="Password Please" />
         </div>
-
-        <input className="btn btn-primary" type="submit" value={this.props.submitBtn} />
+        <span className="signup"><a href="#signup/"><button className="signup-btn btn btn-primary" value={this.props.submitBtn}><img src="./images/button-logo1.png"/>Log In</button></a></span>
+        
 
     </form>
     )
