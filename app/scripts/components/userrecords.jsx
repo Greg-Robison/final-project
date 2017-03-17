@@ -5,6 +5,7 @@ var Backbone = require('backbone');
 var ParseFile = require('../models/parsefile').ParseFile;
 var FishPicCollection = require('../models/fishpic').FishPicCollection;
 var FishPic = require('../models/fishpic').FishPic;
+var Header = require('./layouts/header.jsx').Header
 var User = require('../models/user').User;
 
 
@@ -80,7 +81,7 @@ class UserRecords extends React.Component {
   }
 
   render(){
-    var user = User.current();
+
     var images = this.state.collection.map(function(image){
       return (
         <div className="wrapper" key={image.cid}>
@@ -104,18 +105,12 @@ class UserRecords extends React.Component {
       <div className="wrapper">
         <img className="lake5" src="./images/lake7.jpg" alt="" />
           <div className="col-md-12">
-              <div className="well">
-                  <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
-                  <span className="links"><h4>{user.get('name')}</h4><a href="" onClick={this.logOut}> Sign Off</a></span>
-                  <span className="links"><a href="#userrecords/"> User Records</a></span>
-                  <span className="links"><a href="#publicrecords/"> Public Records</a></span>
-                  <span className="links"><a href="#braggingrites/"> Recent Catches</a></span>
-              </div>
+              <Header></Header>
           </div>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1>This is where the User records will go</h1>
+              <h1>Keep The Weather Data From Your Fishing Trips</h1>
                 <div className="row">
                   <form encType="multipart/form-data">
                     <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />

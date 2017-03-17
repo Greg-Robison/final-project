@@ -13,7 +13,7 @@ class LoginContainer extends React.Component{
   }
   login(creds){
     User.login(creds, function(){
-      Backbone.history.navigate('braggingrites/', {trigger: true});
+      Backbone.history.navigate('', {trigger: true});
     })
   }
   // createAccount(creds){
@@ -84,7 +84,7 @@ class LoginForm extends React.Component {
           <input onChange={this.handlePasswordChange} className="form-control" name="password" id="password-login" type="password" placeholder="Password Please" />
         </div>
         <span className="signup"><a href="#signup/"><button className="signup-btn btn btn-primary" value={this.props.submitBtn}><img src="./images/button-logo1.png"/>Log In</button></a></span>
-        
+
 
     </form>
     )

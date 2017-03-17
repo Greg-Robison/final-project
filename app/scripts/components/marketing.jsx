@@ -2,9 +2,8 @@ var $ = require('jquery');
 var React = require('react');
 var Backbone = require('backbone');
 var Wunderground = require('../models/wunderground').Wunderground;
-
+var Header = require('./layouts/header.jsx').Header
 var User = require('../models/user').User;
-
 
 
 
@@ -25,18 +24,14 @@ class Marketing extends React.Component {
 
   render(){
     var user = User.current();
+
+
     return(
       <div className="wrapper">
 
         <img className="lake5" src="./images/lake6.jpg" alt="" />
           <div className="col-md-12">
-              <div className="well">
-                  <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
-                  <span className="links"><h4>{user.get('name')}</h4><a href=""> Sign Off</a></span>
-                  <span className="links"><a href="#userrecords/"> User Records</a></span>
-                  <span className="links"><a href="#publicrecords/"> Public Records</a></span>
-                  <span className="links"><a href="#braggingrites/"> Recent Catches</a></span>
-              </div>
+              <Header></Header>
           </div>
       <div className="container">
         <div className="row">

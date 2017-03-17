@@ -2,6 +2,7 @@ var $ = require('jquery');
 var React = require('react');
 var Backbone = require('backbone');
 
+var Header = require('./layouts/header.jsx').Header
 var ParseFile = require('../models/parsefile').ParseFile;
 var FishPicCollection = require('../models/fishpic').FishPicCollection;
 var FishPic = require('../models/fishpic').FishPic;
@@ -89,16 +90,10 @@ class BragBoard extends React.Component {
         return (
     <div>
       <img className="lake4" src="./images/lake4.jpg" alt="" />
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
         <div className="col-md-12">
-            <div className="well">
-                <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
-                <span className="links"><h4>{user.get('name')}</h4><a href=""> Sign Off</a></span>
-                <span className="links"><a href="#userrecords/"> User Records</a></span>
-                <span className="links"><a href="#publicrecords/"> Public Records</a></span>
-                <span className="links"><a href="#braggingrites/"> Recent Catches</a></span>
-            </div>
+            <Header></Header>
         </div>
         </div>
 
