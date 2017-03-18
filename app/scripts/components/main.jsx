@@ -96,7 +96,7 @@ class BragBoard extends React.Component {
             <Header></Header>
         </div>
         </div>
-
+<div className="container">
       <div className="row">
         <form encType="multipart/form-data">
           <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />
@@ -108,6 +108,7 @@ class BragBoard extends React.Component {
         {images}
       </div>
     </div>
+</div>
     </div>
 
 

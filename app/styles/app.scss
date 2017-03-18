@@ -18,6 +18,19 @@ body{
 // z-index: 1;
 background-color: grey;
 }
+.current-weather{
+  color: white;
+  text-shadow: 2px 2px 2px #000;
+}
+.user-data{
+  color: #7E00D7;
+  text-shadow: 1px 1px 1px #000;
+}
+.user-name{
+  color: #7E00D7;
+  margin-top: 1.5px;
+  font-size: 20px;
+}
 .lake5{
   position: absolute;
   width: 1300px;
@@ -63,8 +76,9 @@ background-color: grey;
 }
 .signup-btn{
   background-color: #9C00F9;
-  border-style: none;
+  border-style: outset;
   border-radius: 5px
+
 }
 .upload{
   padding-top: 5px;
@@ -95,6 +109,7 @@ h1{
   position: relative;
   width: 600px;
   height: 250px;
+
 }
 
 
@@ -129,6 +144,7 @@ h1{
   font-size: 20px;
   color: orange;
   padding-left: 20px;
+  text-shadow: 2px 2px 2px #000;
 }
 .news{
   height: 250px;

@@ -110,7 +110,7 @@ class UserRecords extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1>Keep The Weather Data From Your Fishing Trips</h1>
+              <h1 className="user-data">Keep The Weather Data From Your Fishing Trips</h1>
                 <div className="row">
                   <form encType="multipart/form-data">
                     <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />
