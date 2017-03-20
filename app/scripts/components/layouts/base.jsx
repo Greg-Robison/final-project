@@ -17,12 +17,12 @@ return (
 }
 function Header(props){
   return(
-    <h1 className="welcome text-center">Anglers Friend</h1>
+    <h1 className="welcome text-center">Hooked</h1>
   );
 }
 function AnonHeader(props){
   return(
-    <h1>Please Signin To Use Anglers Friend</h1>
+    <h1 className='welcome'> Please Create A User Account To Use Hooked</h1>
   );
 }
 module.exports = {

@@ -2,8 +2,9 @@ var $ = require('jquery');
 var React = require('react');
 var Backbone = require('backbone');
 var Wunderground = require('../models/wunderground').Wunderground;
-var Header = require('./layouts/header.jsx').Header
+var Header = require('./layouts/header.jsx').Header;
 var User = require('../models/user').User;
+var Footer = require('./layouts/footer.jsx').Footer;
 
 
 
@@ -36,7 +37,7 @@ class Marketing extends React.Component {
 
     </div>
       <div className="row">
-        <h1 className="current-weather text-center">The Current Weather</h1>
+        <h1 className="current-weather text-center">Current Greenville SC Weather</h1>
         <div className="weather col-md-12">
 
           <span className="weather-span">Moon Phase<p>.75 Waxing</p></span>
@@ -51,7 +52,7 @@ class Marketing extends React.Component {
           <span className="weather-span"><img src={this.state.weather.get('icon_url')}/></span>
 
       </div>
-      <span className="signup"><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=34.841599,-82.402702"><button className="signup-btn btn btn-primary"><img src="./images/button-logo1.png"/>Get Forecast</button></a></span>
+
 
       </div>
 
@@ -152,6 +153,7 @@ Hawk offers this closing tip:
 
       </div>
     </div>
+    <Footer></Footer>
   </div>
   </div>
      )

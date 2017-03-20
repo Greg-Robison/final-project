@@ -26,6 +26,10 @@ background-color: grey;
   color: #7E00D7;
   text-shadow: 1px 1px 1px #000;
 }
+.welcome{
+  color: #7E00D7;
+  text-shadow: 2px 2px 2px orange;
+}
 .user-name{
   color: #7E00D7;
   margin-top: 1.5px;
@@ -59,6 +63,7 @@ background-color: grey;
   float: right;
   padding-left: 20px;
   font-size: 20px;
+  z-index: 10;
 }
 .signin{
   margin-right: 20px;
@@ -76,9 +81,12 @@ background-color: grey;
 }
 .signup-btn{
   background-color: #9C00F9;
-  border-style: outset;
+  border-style: none;
   border-radius: 5px
 
+}
+.local{
+  color: white;
 }
 .upload{
   padding-top: 5px;
@@ -95,6 +103,7 @@ h1{
 }
 .well{
   opacity: 0.6;
+  z-index: 5;
 }
 
 .thumbnail{
@@ -149,4 +158,8 @@ h1{
 .news{
   height: 250px;
   overflow: scroll;
+}
+.map{
+  width: 225px;
+  height: 300px;
 }

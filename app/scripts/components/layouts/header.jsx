@@ -29,10 +29,10 @@ class Header extends React.Component {
 <div className="col-md-12">
     <div className="well">
         <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
-        <span className="links"><h4 className="user-name">Welcome {user.get('name')}</h4><a href="" onClick={this.logOut}> Sign Off</a></span>
-        <span className="links"><a href="#userrecords/"> User Records</a></span>
+        <span className="links"><a href="" onClick={this.logOut}> Sign Off</a></span>
+        <span className="links"><a href="#userrecords/">{user.get('name') + "'s"} Records</a></span>
         <span className="links"><a href="#publicrecords/"> Public Records</a></span>
-        <span className="links"><a href="#braggingrites/"> Recent Catches</a></span>
+        <span className="links"><a href="#braggingrites/"> Bragging Rites</a></span>
     </div>
 </div>
 </div>
