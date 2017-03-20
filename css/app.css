@@ -5766,6 +5766,23 @@ button.close {
 body {
   background-color: grey; }
 
+.current-weather {
+  color: white;
+  text-shadow: 2px 2px 2px #000; }
+
+.user-data {
+  color: #7E00D7;
+  text-shadow: 1px 1px 1px #000; }
+
+.welcome {
+  color: #7E00D7;
+  text-shadow: 2px 2px 2px orange; }
+
+.user-name {
+  color: #7E00D7;
+  margin-top: 1.5px;
+  font-size: 20px; }
+
 .lake5 {
   position: absolute;
   width: 1300px;
@@ -5793,7 +5810,8 @@ body {
 .links {
   float: right;
   padding-left: 20px;
-  font-size: 20px; }
+  font-size: 20px;
+  z-index: 10; }
 
 .signin {
   margin-right: 20px;
@@ -5812,6 +5830,9 @@ body {
   border-style: none;
   border-radius: 5px; }
 
+.local {
+  color: white; }
+
 .upload {
   padding-top: 5px;
   background-color: #9C00F9;
@@ -5825,7 +5846,8 @@ h1 {
   color: black; }
 
 .well {
-  opacity: 0.6; }
+  opacity: 0.6;
+  z-index: 5; }
 
 .thumbnail {
   width: 200px;
@@ -5869,10 +5891,15 @@ h1 {
   float: right;
   font-size: 20px;
   color: orange;
-  padding-left: 20px; }
+  padding-left: 20px;
+  text-shadow: 2px 2px 2px #000; }
 
 .news {
   height: 250px;
   overflow: scroll; }
+
+.map {
+  width: 225px;
+  height: 300px; }
 
 /*# sourceMappingURL=app.css.map */
