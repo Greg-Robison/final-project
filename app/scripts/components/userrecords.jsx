@@ -4,12 +4,18 @@ var Backbone = require('backbone');
 var EXIF = require('exif-js');
 
 var ParseFile = require('../models/parsefile').ParseFile;
+var Comments = require('../models/comment').Comments;
+var CommentsCollection = require('../models/comment').CommentsCollection;
+
 var FishPicCollection = require('../models/fishpic').FishPicCollection;
 var FishPic = require('../models/fishpic').FishPic;
 var Header = require('./layouts/header.jsx').Header
 var User = require('../models/user').User;
 var Google = require('../models/googlemaps').Google;
 var Maps = require('./layouts/maps.jsx').Maps;
+var Places = require('./layouts/places.jsx').Places;
+var PublicRecords = require('./publicrecords.jsx').PublicRecords
+
 
 
 
@@ -17,8 +23,8 @@ var Maps = require('./layouts/maps.jsx').Maps;
 class UserRecords extends React.Component {
   constructor(props){
     super(props);
-
     var self = this;
+    var userId = User.current().get('objectId');
     var fishPicCollection = new FishPicCollection();
 
     fishPicCollection.fetch().then(function(){
@@ -28,6 +34,7 @@ class UserRecords extends React.Component {
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
+    this.addComment = this.addComment.bind(this);
     this.logOut = this.logOut.bind(this);
 
     this.state = {
@@ -140,6 +147,16 @@ handleDelete(e, image){
       // this.forceUpDate();
     });
   }
+  addComment(commentItem){
+    var commentList = this.state.commentsCollection;
+    commentList.create(Item);
+    this.setState({commentsCollection: commentList});
+  };
+  addComment(e){
+    e.preventDefault();
+    this.props.addChat(this.state);
+    this.setState({title: ''});
+  };
 
   render(){
 
@@ -153,10 +170,13 @@ handleDelete(e, image){
           <a href={image.get('image')}><img src={image.get('image')} alt="..." /></a>
           <div className="caption">
             <p>Thumbnail label</p>
-            <a>Map</a>
+
+              <p className="local" onChange={self.handleImageChange}>{self.state.lat}</p>
+              <p className="local" onChange={self.handleImageChange}>{self.state.lon}</p>
             <p>Nice Fish!!</p>
             <a>Post to Bragging Rites</a>
-            <p><a href="#" className="btn btn-primary" role="button">Comment</a> <a href="#" onClick={(e)=>self.handleDelete(e, image)} className="btn btn-default" role="button">Delete</a></p>
+            <input class="comment-input" placeholder="Comment"/>
+            <p><a href="#" onClick={self.addComment}className="btn btn-primary" role="button">Comment</a> <a href="#" onClick={(e)=>self.handleDelete(e, image)} className="btn btn-default" role="button">Delete</a></p>
           </div>
         </div>
         </div>
@@ -186,6 +206,7 @@ handleDelete(e, image){
                   <h1 className="local" onChange={this.handleImageChange}>{this.state.lon}</h1>
 
                   {images}
+                  <PublicRecords />
                 </div>
 
             </div>

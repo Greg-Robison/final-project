@@ -71,6 +71,7 @@
     ]
   },
   "dependencies": {
-    "exif-js": "^2.1.1"
+    "exif-js": "^2.1.1",
+    "react-google-maps": "^4.11.0"
   }
 }
