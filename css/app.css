@@ -5764,6 +5764,7 @@ button.close {
   box-sizing: border-box; }
 
 body {
+  height: 100%;
   background-color: grey; }
 
 .current-weather {
