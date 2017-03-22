@@ -3,26 +3,32 @@ var React = require('react');
 var Backbone = require('backbone');
 var Maps = require('./layouts/maps.jsx').Maps;
 var Places = require('./layouts/places.jsx').Places;
+var FishPicCollection = require('../models/fishpic').FishPicCollection;
+var FishPic = require('../models/fishpic').FishPic;
+// var UserRecords = require('./userrecords.jsx').UserRecords;
 
 
 class PublicRecords extends React.Component {
+  constructor(props){
+    super(props);
+    var self = this;
+  }
   render(){
     const Location = {
-      lat: 34.94226944444444,
-      lng: -82.36524166666666
+      lat: this.props.lat,
+      lng: this.props.lng
     }
     const markers = [
       {
-        loacation: {
-            lat: 34.94226944444444,
-            lng: -82.36524166666666
+        location: {
+            lat: this.props,
+            lng: this.props
         }
       }
     ]
     return(
       <div>
-        this is the React App
-        <div style={{width: 300, height: 600,}}>
+        <div style={{width: 200, height: 300,}}>
           <Maps center={Location} markers={markers} />
         </div>
       </div>

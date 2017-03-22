@@ -73,12 +73,11 @@ class BragBoard extends React.Component {
           <div key={image.cid} className="wrapper">
 
           <div className="col-sm-6 col-md-4">
-          <div className="thumbnail">
+          <div className="well">
             <a href={image.get('image')}><img src={image.get('image')} alt="..." /></a>
             <div className="caption">
-              <p>Thumbnail label</p>
               <p>Nice Fish!!</p>
-              <p><a href="#" className="btn btn-primary" role="button">Comment</a> <a href="#" className="btn btn-default" role="button">Delete</a></p>
+              <p><a href="#" className="btn btn-primary" role="button">Comment</a></p>
 
             </div>
           </div>
@@ -96,17 +95,15 @@ class BragBoard extends React.Component {
             <Header></Header>
         </div>
         </div>
-<div className="container">
-      <div className="row">
-        <form encType="multipart/form-data">
-          <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />
-          <img src={this.state.preview} height="250" width="200" alt="Your Brag Picture Goes Here" />
-        </form>
-          <span className="upload"><button className="signup-btn btn btn-primary" onClick={this.handleUpload}><img src="./images/button-logo1.png"/>Upload Photo</button></span>
-      </div>
-      <div className="row">
-        {images}
-      </div>
+        <div className="container">
+
+
+
+
+            {images}
+
+
+
     </div>
 </div>
     </div>
@@ -120,3 +117,11 @@ class BragBoard extends React.Component {
 module.exports = {
   BragBoard
 };
+
+// <div className="row">
+//   <form encType="multipart/form-data">
+//     <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />
+//     <img src={this.state.preview} height="250" width="200" alt="Your Brag Picture Goes Here" />
+//   </form>
+//     <span className="upload"><button className="signup-btn btn btn-primary" onClick={this.handleUpload}><img src="./images/button-logo1.png"/>Upload Photo</button></span>
+// </div>

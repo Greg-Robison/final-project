@@ -69,8 +69,10 @@ class UserRecords extends React.Component {
       var exif = EXIF.getData(file, () => {
       var lat = EXIF.getTag(file, "GPSLatitude");
       var lon = EXIF.getTag(file, "GPSLongitude");
+      var date = EXIF.getTag(file, "DateTimeOriginal");
       //Convert coordinates to WGS84 decimal
-      console.log('here', lat, lon);
+
+      console.log('here', date);
       var latRef = EXIF.getTag(file, "GPSLatitudeRef") || "N";
       var lonRef = EXIF.getTag(file, "GPSLongitudeRef") || "W";
       lat = (lat[0] + lat[1]/60 + lat[2]/3600) * (latRef == "N" ? 1 : -1);
@@ -133,7 +135,8 @@ handleDelete(e, image){
         description: "",
         image: imageUrl,
         userId: user.objectId,
-
+        lat: this.state.lat,
+        lon: this.state.lon
       });
 
 
@@ -161,22 +164,44 @@ handleDelete(e, image){
   render(){
 
     var self = this;
-    var images = this.state.collection.map(function(image){
+    var images = self.state.collection.map(function(image){
+      console.log('image', image);
+      console.log('number type', typeof image.attributes.lat);
+      const Location = {
+        lat: image.attributes.lat,
+        lng: image.attributes.lon 
+      }
+      const markers = [
+        {
+          location: {
+              lat: 34.10241666666667,
+              lng: -82.62381111111111
+          }
+        }
+      ]
       return (
         <div className="wrapper" key={image.cid}>
 
-        <div className="col-sm-6 col-md-4">
-        <div className="thumbnail" key={image.cid}>
+        <div className="col-sm-6 col-md-3">
+        <div className="well" key={image.cid}>
           <a href={image.get('image')}><img src={image.get('image')} alt="..." /></a>
-          <div className="caption">
-            <p>Thumbnail label</p>
 
-              <p className="local" onChange={self.handleImageChange}>{self.state.lat}</p>
-              <p className="local" onChange={self.handleImageChange}>{self.state.lon}</p>
+          <div className="caption">
             <p>Nice Fish!!</p>
             <a>Post to Bragging Rites</a>
-            <input class="comment-input" placeholder="Comment"/>
+            <input className="comment-input" placeholder="Comment"/>
             <p><a href="#" onClick={self.addComment}className="btn btn-primary" role="button">Comment</a> <a href="#" onClick={(e)=>self.handleDelete(e, image)} className="btn btn-default" role="button">Delete</a></p>
+              <ul>
+                <li>Lat: {image.attributes.lat}</li>
+                <li>Lng: {image.attributes.lon}</li>
+              </ul>
+          </div>
+
+        </div>
+
+        <div>
+          <div style={{width: 200, height: 300,}}>
+            <Maps center={Location} />
           </div>
         </div>
         </div>
@@ -195,18 +220,20 @@ handleDelete(e, image){
             <div className="col-md-12">
               <h1 className="user-data">Keep The Weather Data From Your Fishing Trips</h1>
                 <div className="row">
+                  <div className="col-md-12">
                   <form encType="multipart/form-data">
                     <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />
                     <img src={this.state.preview} height="250" width="200" alt="Your Brag Picture Goes Here" />
                   </form>
                     <span className="upload"><button className="signup-btn btn btn-primary" onClick={this.handleUpload}><img src="./images/button-logo1.png"/>Upload Photo</button></span>
+                    {images}
                 </div>
-                <div className="row">
-                  <h1 className="local" onChange={this.handleImageChange}>{this.state.lat}</h1>
-                  <h1 className="local" onChange={this.handleImageChange}>{this.state.lon}</h1>
 
-                  {images}
-                  <PublicRecords />
+
+
+
+
+
                 </div>
 
             </div>

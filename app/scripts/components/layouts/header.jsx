@@ -27,7 +27,7 @@ class Header extends React.Component {
     return(
       <div className="container-fluid">
 <div className="col-md-12">
-    <div className="well">
+    <div className="well well-header">
         <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
         <span className="links"><a href="" onClick={this.logOut}> Sign Off</a></span>
         <span className="links"><a href="#userrecords/">{user.get('name') + "'s"} Records</a></span>
