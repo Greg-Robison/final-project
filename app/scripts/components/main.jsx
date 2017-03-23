@@ -4,65 +4,34 @@ var Backbone = require('backbone');
 
 var Header = require('./layouts/header.jsx').Header
 var ParseFile = require('../models/parsefile').ParseFile;
-var FishPicCollection = require('../models/fishpic').FishPicCollection;
-var FishPic = require('../models/fishpic').FishPic;
+// var FishPicCollection = require('../models/fishpic').FishPicCollection;
+// var FishPic = require('../models/fishpic').FishPic;
 var User = require('../models/user').User;
+var BragPicCollection = require('../models/bragpics').BragPicCollection;
+var BragPic = require('../models/bragpics').BragPic;
+var Footer = require('./layouts/footer.jsx').Footer;
+var UserRecords = require('./userrecords.jsx').UserRecords;
 
 class BragBoard extends React.Component {
   constructor(props){
     super(props);
 
     var self = this;
-    var fishPicCollection = new FishPicCollection();
+    var bragPicCollection = new BragPicCollection();
 
-    fishPicCollection.fetch().then(function(){
-      self.setState({collection: fishPicCollection});
+    bragPicCollection.fetch().then(function(){
+      self.setState({collection: bragPicCollection});
     });
 
-    this.handleImageChange = this.handleImageChange.bind(this);
-    this.handleUpload = this.handleUpload.bind(this);
 
     this.state = {
-      preview: null,
       pic: null,
-      collection: fishPicCollection
-    };
-
-
-
+      collection: bragPicCollection
+    }
+    console.log('here idiot', this.state.collection);
   }
 
-  handleImageChange(e){
-    var file = e.target.files[0];
-    this.setState({pic: file});
-    var reader = new FileReader();
-    reader.onloadend = ()=>{
-      this.setState({preview: reader.result});
-    };
 
-    reader.readAsDataURL(file);
-  }
-
-  handleUpload(e){
-    e.preventDefault();
-    var pic = this.state.pic;
-    var image = new ParseFile(pic);
-    image.save({}, {
-      data: pic
-    }).then((response)=>{
-      var imageUrl = response.url;
-      console.log('imageUrl', imageUrl);
-      var fishPic = new FishPic();
-      fishPic.set({
-        name: this.state.name,
-        description: "",
-        image: imageUrl
-      });
-      // console.log('fishPic', fishPic);
-      fishPic.save();
-      this.forceUpDate();
-    });
-  }
 
 
     render() {
@@ -74,7 +43,7 @@ class BragBoard extends React.Component {
 
           <div className="col-sm-6 col-md-4">
           <div className="well">
-            <a href={image.get('image')}><img src={image.get('image')} alt="..." /></a>
+            <a href={image.attributes.image}><img src={image.attributes.image} alt="..." /></a>
             <div className="caption">
               <p>Nice Fish!!</p>
               <p><a href="#" className="btn btn-primary" role="button">Comment</a></p>
@@ -93,6 +62,7 @@ class BragBoard extends React.Component {
         <div className="row">
         <div className="col-md-12">
             <Header></Header>
+            {images}
         </div>
         </div>
         <div className="container">
@@ -100,12 +70,13 @@ class BragBoard extends React.Component {
 
 
 
-            {images}
+
 
 
 
     </div>
 </div>
+<Footer />
     </div>
 
 

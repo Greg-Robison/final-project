@@ -13,7 +13,6 @@ class Marketing extends React.Component {
     super(props);
     var weather = new Wunderground;
     weather.fetch().then(()=>{
-      console.log(weather);
       this.setState({weather});
     })
     this.state = {

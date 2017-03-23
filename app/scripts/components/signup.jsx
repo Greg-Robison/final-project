@@ -13,7 +13,6 @@ class SignupContainer extends React.Component{
 
   createAccount(creds){
     var user = new User(creds);
-    console.log('creds', creds);
     user.save().then(function(data){
       data.name = creds.name;
       localStorage.setItem('user', JSON.stringify(data));
@@ -22,7 +21,6 @@ class SignupContainer extends React.Component{
   }
 
   render(){
-    console.log('here');
     return(
       <div className="wrapper">
         <img className="lake2" src="./images/lake2.jpg" alt="" />

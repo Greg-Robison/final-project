@@ -9,7 +9,7 @@ class Maps extends React.Component{
   render(){
     const mapContainer = <div style={{height: '100%', width: '100%'}}></div>
 
-    console.log(this.props.center);
+    
     return(
       <GoogleMapLoader
         containerElement = { mapContainer }

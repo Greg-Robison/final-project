@@ -2,6 +2,7 @@ var $ = require('jquery');
 var React = require('react');
 var Backbone = require('backbone');
 var EXIF = require('exif-js');
+var Moment = require('moment');
 
 var ParseFile = require('../models/parsefile').ParseFile;
 var Comments = require('../models/comment').Comments;
@@ -14,7 +15,11 @@ var User = require('../models/user').User;
 var Google = require('../models/googlemaps').Google;
 var Maps = require('./layouts/maps.jsx').Maps;
 var Places = require('./layouts/places.jsx').Places;
-var PublicRecords = require('./publicrecords.jsx').PublicRecords
+var PublicRecords = require('./publicrecords.jsx').PublicRecords;
+var Footer = require('./layouts/footer.jsx').Footer;
+var BragPicCollection = require('../models/bragpics').BragPicCollection;
+var BragPic = require('../models/bragpics').BragPic;
+
 
 
 
@@ -34,6 +39,8 @@ class UserRecords extends React.Component {
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
+    this.handlePost = this.handlePost.bind(this);
+
     this.addComment = this.addComment.bind(this);
     this.logOut = this.logOut.bind(this);
 
@@ -46,7 +53,7 @@ class UserRecords extends React.Component {
       latRef: null,
       lonRef: null
     };
-    console.log(this.state.collection);
+
   }
 
   logOut(e) {
@@ -71,8 +78,6 @@ class UserRecords extends React.Component {
       var lon = EXIF.getTag(file, "GPSLongitude");
       var date = EXIF.getTag(file, "DateTimeOriginal");
       //Convert coordinates to WGS84 decimal
-
-      console.log('here', date);
       var latRef = EXIF.getTag(file, "GPSLatitudeRef") || "N";
       var lonRef = EXIF.getTag(file, "GPSLongitudeRef") || "W";
       lat = (lat[0] + lat[1]/60 + lat[2]/3600) * (latRef == "N" ? 1 : -1);
@@ -87,6 +92,7 @@ class UserRecords extends React.Component {
           "latitude": lat,
           "longitude": lon
         },
+        date: date,
         lat: lat,
         lon: lon,
         latRef: latRef,
@@ -103,9 +109,6 @@ class UserRecords extends React.Component {
 }
 handleDelete(e, image){
   e.preventDefault();
-  console.log('image', image);
-  console.log(this.state.collection);
-  console.log(e);
   image.destroy({success: function(model, response) {
   // update state, refresh view
   }});
@@ -115,12 +118,12 @@ handleDelete(e, image){
     var pic = this.state.pic;
     var image = new ParseFile(pic);
     var user = JSON.parse(localStorage.user)
-    console.log(user.objectId);
+
     image.save({}, {
       data: pic
     }).then((response)=>{
       var imageUrl = response.url;
-      console.log('imageUrl', imageUrl);
+
       var fishPic = new FishPic();
 
       // var ACL = {
@@ -136,7 +139,8 @@ handleDelete(e, image){
         image: imageUrl,
         userId: user.objectId,
         lat: this.state.lat,
-        lon: this.state.lon
+        lon: this.state.lon,
+        date: this.state.date
       });
 
 
@@ -145,11 +149,26 @@ handleDelete(e, image){
       var collection = this.state.collection;
       collection.add(fishPic)
       this.setState({ collection: collection })
-      // console.log('fishPic', fishPic);
+
       fishPic.save();
       // this.forceUpDate();
     });
   }
+  handlePost(image){
+    var imageUrl = image.get('image');
+    var user = JSON.parse(localStorage.user);
+    var bragPic = new BragPic();
+    bragPic.set({
+      name: this.state.name,
+      description: "",
+      image: imageUrl,
+      userId: user.objectId,
+      date: this.state.date
+    });
+    console.log('brag', bragPic);
+    bragPic.save();
+
+  };
   addComment(commentItem){
     var commentList = this.state.commentsCollection;
     commentList.create(Item);
@@ -162,14 +181,12 @@ handleDelete(e, image){
   };
 
   render(){
-
     var self = this;
     var images = self.state.collection.map(function(image){
-      console.log('image', image);
-      console.log('number type', typeof image.attributes.lat);
+
       const Location = {
         lat: image.attributes.lat,
-        lng: image.attributes.lon 
+        lng: image.attributes.lon
       }
       const markers = [
         {
@@ -188,10 +205,11 @@ handleDelete(e, image){
 
           <div className="caption">
             <p>Nice Fish!!</p>
-            <a>Post to Bragging Rites</a>
+            <a onClick={() => self.handlePost(image)}>Post to Bragging Rites</a>
             <input className="comment-input" placeholder="Comment"/>
             <p><a href="#" onClick={self.addComment}className="btn btn-primary" role="button">Comment</a> <a href="#" onClick={(e)=>self.handleDelete(e, image)} className="btn btn-default" role="button">Delete</a></p>
               <ul>
+                <li>Date {image.attributes.date}</li>
                 <li>Lat: {image.attributes.lat}</li>
                 <li>Lng: {image.attributes.lon}</li>
               </ul>
@@ -200,15 +218,16 @@ handleDelete(e, image){
         </div>
 
         <div>
-          <div style={{width: 200, height: 300,}}>
+          <div style={{width: 255, height: 300,}}>
             <Maps center={Location} />
           </div>
         </div>
         </div>
         </div>
       )
+    });
 
-    })
+
     return(
       <div className="wrapper">
         <img className="lake5" src="./images/lake7.jpg" alt="" />
@@ -240,6 +259,7 @@ handleDelete(e, image){
           </div>
 
         </div>
+        <Footer />
       </div>
     )
   }

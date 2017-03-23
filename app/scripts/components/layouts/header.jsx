@@ -31,7 +31,6 @@ class Header extends React.Component {
         <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
         <span className="links"><a href="" onClick={this.logOut}> Sign Off</a></span>
         <span className="links"><a href="#userrecords/">{user.get('name') + "'s"} Records</a></span>
-        <span className="links"><a href="#publicrecords/"> Public Records</a></span>
         <span className="links"><a href="#braggingrites/"> Bragging Rites</a></span>
     </div>
 </div>
