@@ -58,7 +58,7 @@ class BragBoard extends React.Component {
         return (
     <div>
       <img className="lake4" src="./images/lake4.jpg" alt="" />
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
         <div className="col-md-12">
             <Header></Header>

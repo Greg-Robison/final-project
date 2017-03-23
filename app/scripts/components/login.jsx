@@ -26,7 +26,7 @@ class LoginContainer extends React.Component{
 
 
   render(){
-    
+
     return(
       <div className="wrapper">
         <img className="lake3" src="./images/lake3.jpg" alt="" />
@@ -35,7 +35,7 @@ class LoginContainer extends React.Component{
       <div className="container">
         <div className="row">
           <div className="col-md-5">
-              <h1 className="welcome">Allready a member Log In</h1>
+              <h1 className="welcome">Already a member Log In</h1>
               <LoginForm action={this.login} submitBtn="Login" />
           </div>
 

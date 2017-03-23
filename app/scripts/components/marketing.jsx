@@ -134,20 +134,17 @@ Hawk offers this closing tip:
       <div className="col-md-4 hype">
         <h3>The Hottest Lures!!</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.  Lorem ipsum dolor sit am
-            et, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum.
+            Speaking for myself, I love the soft plastics.  I was introduced to
+            fishing with plastic worms when I was about 12 years old, and have been using
+            them ever since!  Personally I love the feel of the hit on a plastic worm.
+            And over the years I have been very succesfull fishing them.  With that being said
+            what I have been using lately are the Zoom Trick worms.  I fish them using a Texas weedless
+            rig but without the weight.  Because I dont use a weight I have to use a spinning reel (so I can cast it more than
+            a few feet) LOL.  Anyway the trick worm is a floating worm, it will actually sink but will stay
+            close to the surface if you provide a little action.  you just have to jerk your rod tip
+            a couple of times and then reel in the slack, then repeat.  if the bass are aggressive they will
+            break the water hitting them!!  Just remeber that it is a plastic and you do have to
+            set the hook. Have fun and catch some Bass!!
           </p>
 
       </div>

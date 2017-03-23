@@ -2,7 +2,7 @@ var $ = require('jquery');
 var React = require('react');
 var Backbone = require('backbone');
 var EXIF = require('exif-js');
-var Moment = require('moment');
+var moment = require('moment');
 
 var ParseFile = require('../models/parsefile').ParseFile;
 var Comments = require('../models/comment').Comments;
@@ -40,7 +40,7 @@ class UserRecords extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
     this.handlePost = this.handlePost.bind(this);
-
+    this.handleComment = this.handleComment.bind(this);
     this.addComment = this.addComment.bind(this);
     this.logOut = this.logOut.bind(this);
 
@@ -169,18 +169,30 @@ handleDelete(e, image){
     bragPic.save();
 
   };
-  addComment(commentItem){
-    var commentList = this.state.commentsCollection;
-    commentList.create(Item);
-    this.setState({commentsCollection: commentList});
-  };
+
   addComment(e){
     e.preventDefault();
-    this.props.addChat(this.state);
-    this.setState({title: ''});
+    var comment = comment.get('comment');
+    var user = JSON.parse(localStorage.user);
+    var comment = new Comments();
+    comment.set({
+      name: this.state.name,
+      description: "",
+      comment: comment,
+      userId: user.objectId,
+      date: this.state.date
+    });
+    console.log('comment', comment);
+    comment.save();
+
   };
+  handleComment(e){
+    var comment = new Comments();
+
+  }
 
   render(){
+
     var self = this;
     var images = self.state.collection.map(function(image){
 
@@ -196,6 +208,13 @@ handleDelete(e, image){
           }
         }
       ]
+      var date = image.attributes.date;
+
+      // var newDate = new Date(date);
+      //
+      // console.log('here', moment(newDate).format('lll'));
+
+
       return (
         <div className="wrapper" key={image.cid}>
 
@@ -206,10 +225,10 @@ handleDelete(e, image){
           <div className="caption">
             <p>Nice Fish!!</p>
             <a onClick={() => self.handlePost(image)}>Post to Bragging Rites</a>
-            <input className="comment-input" placeholder="Comment"/>
-            <p><a href="#" onClick={self.addComment}className="btn btn-primary" role="button">Comment</a> <a href="#" onClick={(e)=>self.handleDelete(e, image)} className="btn btn-default" role="button">Delete</a></p>
+            <input className="comment-input" onChange={self.handleComment}placeholder="Comment"/>
+            <p><a href="#" onClick={self.addComment}className="btn btn-primary" role="button">Comment</a> <a href="#" onClick={(e)=>self.handleDelete(e, image)} className="btn btn-default" role="button">Delete Post</a></p>
               <ul>
-                <li>Date {image.attributes.date}</li>
+                <li>Date {date}</li>
                 <li>Lat: {image.attributes.lat}</li>
                 <li>Lng: {image.attributes.lon}</li>
               </ul>
@@ -230,7 +249,7 @@ handleDelete(e, image){
 
     return(
       <div className="wrapper">
-        <img className="lake5" src="./images/lake7.jpg" alt="" />
+        <img className="lake5" src="./images/lake8.jpg" alt="" />
           <div className="col-md-12">
               <Header></Header>
           </div>
