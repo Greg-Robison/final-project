@@ -40,17 +40,17 @@ class Footer extends React.Component{
     return(
     React.createElement("div", {className: "container"}, 
       React.createElement("hr", null), 
-      React.createElement("div", {className: "row"}, 
+      React.createElement("div", {className: "row well footer"}, 
         React.createElement("div", {className: "col-md-4"}, 
-          React.createElement("h3", null, "Somthing goes here"), 
+          React.createElement("h3", null, "Something goes here"), 
           React.createElement("h5", null, "something Else Goes here")
         ), 
         React.createElement("div", {className: "col-md-4"}, 
-          React.createElement("h3", null, "Somthing goes here"), 
+          React.createElement("h3", null, "Something goes here"), 
           React.createElement("h5", null, "something Else Goes here")
         ), 
         React.createElement("div", {className: "col-md-4"}, 
-          React.createElement("h3", null, "Somthing goes here"), 
+          React.createElement("h3", null, "Something goes here"), 
           React.createElement("h5", null, "something Else Goes here")
         )
       )
@@ -95,6 +95,7 @@ class Header extends React.Component {
 React.createElement("div", {className: "col-md-12"}, 
     React.createElement("div", {className: "well well-header"}, 
         React.createElement("a", {href: "#"}, React.createElement("img", {className: "logo", alt: "Brand", src: "images/logo1.png"})), 
+        React.createElement("img", {className: "links gif", src: "./images/giphy.gif", alt: ""}), 
         React.createElement("span", {className: "links"}, React.createElement("a", {href: "", onClick: this.logOut}, " Sign Off")), 
         React.createElement("span", {className: "links"}, React.createElement("a", {href: "#userrecords/"}, user.get('name') + "'s", " Records")), 
         React.createElement("span", {className: "links"}, React.createElement("a", {href: "#braggingrites/"}, " Bragging Rites"))
@@ -206,7 +207,7 @@ class LoginContainer extends React.Component{
 
 
   render(){
-    
+
     return(
       React.createElement("div", {className: "wrapper"}, 
         React.createElement("img", {className: "lake3", src: "./images/lake3.jpg", alt: ""}), 
@@ -215,7 +216,7 @@ class LoginContainer extends React.Component{
       React.createElement("div", {className: "container"}, 
         React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-md-5"}, 
-              React.createElement("h1", {className: "welcome"}, "Allready a member Log In"), 
+              React.createElement("h1", {className: "welcome"}, "Already a member Log In"), 
               React.createElement(LoginForm, {action: this.login, submitBtn: "Login"})
           )
 
@@ -342,7 +343,7 @@ class BragBoard extends React.Component {
         return (
     React.createElement("div", null, 
       React.createElement("img", {className: "lake4", src: "./images/lake4.jpg", alt: ""}), 
-      React.createElement("div", {className: "container-fluid"}, 
+      React.createElement("div", {className: "container"}, 
         React.createElement("div", {className: "row"}, 
         React.createElement("div", {className: "col-md-12"}, 
             React.createElement(Header, null), 
@@ -519,20 +520,17 @@ class Marketing extends React.Component {
       React.createElement("div", {className: "col-md-4 hype"}, 
         React.createElement("h3", null, "The Hottest Lures!!"), 
           React.createElement("p", null, 
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do" + ' ' +
-            "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim" + ' ' +
-            "ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut" + ' ' +
-            "aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit" + ' ' +
-            "in voluptate velit esse cillum dolore eu fugiat nulla pariatur." + ' ' +
-            "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui" + ' ' +
-            "officia deserunt mollit anim id est laborum.  Lorem ipsum dolor sit am" + ' ' +
-            "et, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut" + ' ' +
-            "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud" + ' ' +
-            "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." + ' ' +
-            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum" + ' ' +
-            "dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non" + ' ' +
-            "proident, sunt in culpa qui officia deserunt mollit anim id est" + ' ' +
-            "laborum."
+            "Speaking for myself, I love the soft plastics.  I was introduced to" + ' ' +
+            "fishing with plastic worms when I was about 12 years old, and have been using" + ' ' +
+            "them ever since!  Personally I love the feel of the hit on a plastic worm." + ' ' +
+            "And over the years I have been very succesfull fishing them.  With that being said" + ' ' +
+            "what I have been using lately are the Zoom Trick worms.  I fish them using a Texas weedless" + ' ' +
+            "rig but without the weight.  Because I dont use a weight I have to use a spinning reel (so I can cast it more than" + ' ' +
+            "a few feet) LOL.  Anyway the trick worm is a floating worm, it will actually sink but will stay" + ' ' +
+            "close to the surface if you provide a little action.  you just have to jerk your rod tip" + ' ' +
+            "a couple of times and then reel in the slack, then repeat.  if the bass are aggressive they will" + ' ' +
+            "break the water hitting them!!  Just remeber that it is a plastic and you do have to" + ' ' +
+            "set the hook. Have fun and catch some Bass!!"
           )
 
       )
@@ -697,7 +695,7 @@ var $ = require('jquery');
 var React = require('react');
 var Backbone = require('backbone');
 var EXIF = require('exif-js');
-var Moment = require('moment');
+var moment = require('moment');
 
 var ParseFile = require('../models/parsefile').ParseFile;
 var Comments = require('../models/comment').Comments;
@@ -735,7 +733,7 @@ class UserRecords extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
     this.handlePost = this.handlePost.bind(this);
-
+    this.handleComment = this.handleComment.bind(this);
     this.addComment = this.addComment.bind(this);
     this.logOut = this.logOut.bind(this);
 
@@ -864,18 +862,30 @@ handleDelete(e, image){
     bragPic.save();
 
   };
-  addComment(commentItem){
-    var commentList = this.state.commentsCollection;
-    commentList.create(Item);
-    this.setState({commentsCollection: commentList});
-  };
+
   addComment(e){
     e.preventDefault();
-    this.props.addChat(this.state);
-    this.setState({title: ''});
+    var comment = comment.get('comment');
+    var user = JSON.parse(localStorage.user);
+    var comment = new Comments();
+    comment.set({
+      name: this.state.name,
+      description: "",
+      comment: comment,
+      userId: user.objectId,
+      date: this.state.date
+    });
+    console.log('comment', comment);
+    comment.save();
+
   };
+  handleComment(e){
+    var comment = new Comments();
+
+  }
 
   render(){
+
     var self = this;
     var images = self.state.collection.map(function(image){
 
@@ -891,6 +901,13 @@ handleDelete(e, image){
           }
         }
       ]
+      var date = image.attributes.date;
+
+      // var newDate = new Date(date);
+      //
+      // console.log('here', moment(newDate).format('lll'));
+
+
       return (
         React.createElement("div", {className: "wrapper", key: image.cid}, 
 
@@ -901,10 +918,10 @@ handleDelete(e, image){
           React.createElement("div", {className: "caption"}, 
             React.createElement("p", null, "Nice Fish!!"), 
             React.createElement("a", {onClick: () => self.handlePost(image)}, "Post to Bragging Rites"), 
-            React.createElement("input", {className: "comment-input", placeholder: "Comment"}), 
-            React.createElement("p", null, React.createElement("a", {href: "#", onClick: self.addComment, className: "btn btn-primary", role: "button"}, "Comment"), " ", React.createElement("a", {href: "#", onClick: (e)=>self.handleDelete(e, image), className: "btn btn-default", role: "button"}, "Delete")), 
+            React.createElement("input", {className: "comment-input", onChange: self.handleComment, placeholder: "Comment"}), 
+            React.createElement("p", null, React.createElement("a", {href: "#", onClick: self.addComment, className: "btn btn-primary", role: "button"}, "Comment"), " ", React.createElement("a", {href: "#", onClick: (e)=>self.handleDelete(e, image), className: "btn btn-default", role: "button"}, "Delete Post")), 
               React.createElement("ul", null, 
-                React.createElement("li", null, "Date ", image.attributes.date), 
+                React.createElement("li", null, "Date ", date), 
                 React.createElement("li", null, "Lat: ", image.attributes.lat), 
                 React.createElement("li", null, "Lng: ", image.attributes.lon)
               )
@@ -925,7 +942,7 @@ handleDelete(e, image){
 
     return(
       React.createElement("div", {className: "wrapper"}, 
-        React.createElement("img", {className: "lake5", src: "./images/lake7.jpg", alt: ""}), 
+        React.createElement("img", {className: "lake5", src: "./images/lake8.jpg", alt: ""}), 
           React.createElement("div", {className: "col-md-12"}, 
               React.createElement(Header, null)
           ), 

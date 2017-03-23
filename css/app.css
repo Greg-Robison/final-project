@@ -5787,6 +5787,11 @@ li {
   margin-top: 1.5px;
   font-size: 20px; }
 
+.gif {
+  width: 120px;
+  height: 65px;
+  padding-left: 20px; }
+
 .lake5 {
   position: absolute;
   width: 1300px;
@@ -5905,5 +5910,9 @@ h1 {
 .map {
   width: 225px;
   height: 300px; }
+
+.footer {
+  background-color: slategray;
+  color: purple; }
 
 /*# sourceMappingURL=app.css.map */
