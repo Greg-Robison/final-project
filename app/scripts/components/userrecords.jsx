@@ -19,6 +19,9 @@ var PublicRecords = require('./publicrecords.jsx').PublicRecords;
 var Footer = require('./layouts/footer.jsx').Footer;
 var BragPicCollection = require('../models/bragpics').BragPicCollection;
 var BragPic = require('../models/bragpics').BragPic;
+var NoteCollection = require('../models/note.js').NoteCollection;
+var Note = require('../models/note.js').Note;
+
 
 
 
@@ -40,8 +43,8 @@ class UserRecords extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
     this.handlePost = this.handlePost.bind(this);
-    this.handleComment = this.handleComment.bind(this);
-    this.addComment = this.addComment.bind(this);
+    this.handleNote = this.handleNote.bind(this);
+    this.addNote = this.addNote.bind(this);
     this.logOut = this.logOut.bind(this);
 
     this.state = {
@@ -170,27 +173,29 @@ handleDelete(e, image){
 
   };
 
-  addComment(e){
+  addNote(e){
+    console.log('comment on submit', this.state.note);
     e.preventDefault();
-    var comment = comment.get('comment');
     var user = JSON.parse(localStorage.user);
-    var comment = new Comments();
-    comment.set({
-      name: this.state.name,
-      description: "",
-      comment: comment,
+    var note = new Note();
+    note.set({
+      name: user.objectId,
+      note: this.state.note,
       userId: user.objectId,
-      date: this.state.date
+      date: new Date()
     });
-    console.log('comment', comment);
-    comment.save();
-
-  };
-  handleComment(e){
-    var comment = new Comments();
+    console.log('note', note);
+    note.save();
 
   }
 
+  handleNote(e){
+    e.preventDefault();
+    this.setState({
+      note: e.target.value
+    })
+    console.log('note on input', this.state.note);
+  }
   render(){
 
     var self = this;
@@ -225,10 +230,11 @@ handleDelete(e, image){
           <div className="caption">
             <p>Nice Fish!!</p>
             <a onClick={() => self.handlePost(image)}>Post to Bragging Rites</a>
-            <input className="comment-input" onChange={self.handleComment}placeholder="Comment"/>
-            <p><a href="#" onClick={self.addComment}className="btn btn-primary" role="button">Comment</a> <a href="#" onClick={(e)=>self.handleDelete(e, image)} className="btn btn-default" role="button">Delete Post</a></p>
+            <input type="text" className="comment-input" name="note" value={self.state.name} onChange={self.handleNote}placeholder="Your Notes"/>
+            <p><button onClick={self.addNote} className="btn btn-primary">Add Notes</button><button className="btn btn-primary">Show Notes</button> <button onClick={(e)=>self.handleDelete(e, image)} className="btn btn-default">Delete Post</button></p>
               <ul>
                 <li>Date {date}</li>
+                <li><a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030">Weather Info</a></li>
                 <li>Lat: {image.attributes.lat}</li>
                 <li>Lng: {image.attributes.lon}</li>
               </ul>

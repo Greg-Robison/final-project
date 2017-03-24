@@ -48,6 +48,7 @@ urlRoot: function(){
       return false;
     }
 
+    // console.log('currentUser', currentUser);
     return currentUser;
   }
 });

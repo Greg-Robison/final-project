@@ -15,6 +15,7 @@ class Marketing extends React.Component {
     weather.fetch().then(()=>{
       this.setState({weather});
     })
+    console.log(weather);
     this.state = {
       weather
     };
@@ -60,6 +61,7 @@ class Marketing extends React.Component {
       <div className="row">
 
           <img className="logo-bottom" alt="Brand" src="images/logo1.png" />
+            <a href="http://www.wunderground.com/US/SC/Greenville.html"><button className="signin-btn btn btn-primary forecast"><img src="./images/button-logo1.png"></img>Forecast</button></a>
 
       </div>
     </div>

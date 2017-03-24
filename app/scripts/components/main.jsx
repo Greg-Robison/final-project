@@ -11,6 +11,8 @@ var BragPicCollection = require('../models/bragpics').BragPicCollection;
 var BragPic = require('../models/bragpics').BragPic;
 var Footer = require('./layouts/footer.jsx').Footer;
 var UserRecords = require('./userrecords.jsx').UserRecords;
+var CommentsCollection = require('../models/comment.js').CommentsCollection;
+var Comments = require('../models/comment.js').Comments;
 
 class BragBoard extends React.Component {
   constructor(props){
@@ -21,70 +23,138 @@ class BragBoard extends React.Component {
 
     bragPicCollection.fetch().then(function(){
       self.setState({collection: bragPicCollection});
+
     });
 
-
+    this.addComment = this.addComment.bind(this);
+    this.handleComment = this.handleComment.bind(this);
     this.state = {
       pic: null,
       collection: bragPicCollection
     }
-    console.log('here idiot', this.state.collection);
+
   }
 
+  addComment(e){
+    console.log('comment on submit', this.state.comment);
+    e.preventDefault();
+    var user = JSON.parse(localStorage.user);
+    var comment = new Comments();
+    comment.set({
+      name: user.objectId,
+      comment: this.state.comment,
+      userId: user.objectId,
+      date: new Date()
+    });
+    console.log('comment', comment);
+    comment.save();
 
+  }
 
+  handleComment(e){
+    e.preventDefault();
+    console.log('this', this);
+    console.log('event', e);
+    // this.setState({
+    //   comment: e.target.value
+    // })
+    console.log('comment on input', this.state.comment);
+  }
 
-    render() {
-      var user = User.current();
+  render() {
+    var self = this;
+    var user = User.current();
 
-      var images = this.state.collection.map(function(image){
-        return (
-          <div key={image.cid} className="wrapper">
-
-          <div className="col-sm-6 col-md-4">
-          <div className="well">
-            <a href={image.attributes.image}><img src={image.attributes.image} alt="..." /></a>
-            <div className="caption">
-              <p>Nice Fish!!</p>
-              <p><a href="#" className="btn btn-primary" role="button">Comment</a></p>
-
+    var images = this.state.collection.map(function(image, index){
+      return (<BragImage key={index} image={image} /> )
+    });
+      return (
+        <div>
+          <img className="lake4" src="./images/lake4.jpg" alt="" />
+          <div className="container">
+            <div className="row">
+            <div className="col-md-12">
+                <Header></Header>
+                {images}
+            </div>
+            </div>
+            <div className="container">
             </div>
           </div>
-          </div>
-          </div>
-        )
-
-      })
-        return (
-    <div>
-      <img className="lake4" src="./images/lake4.jpg" alt="" />
-      <div className="container">
-        <div className="row">
-        <div className="col-md-12">
-            <Header></Header>
-            {images}
+          <Footer />
         </div>
-        </div>
-        <div className="container">
-
-
-
-
-
-
-
-
-    </div>
-</div>
-<Footer />
-    </div>
-
-
-
-
-    )
+      )
   }
 };
+
+class BragImage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      comment: '',
+      comments: this.props.image.get('comments')
+    }
+
+    console.log('here', this.props.image);
+
+    this.handleComment = this.handleComment.bind(this);
+    this.saveComment = this.saveComment.bind(this);
+  }
+
+  handleComment(e) {
+    this.setState({ 'comment': e.target.value })
+  }
+
+  saveComment(e) {
+    e.preventDefault();
+    // console.log(User.current().get('name'))
+    var image = this.props.image;
+    var comments = image.get('comments') || [];
+
+    comments.push({text :this.state.comment, author: User.current().get('name')});
+    image.set('comments', comments);
+    this.setState({ 'comments': comments })
+    // console.log('image', image);
+    image.save();
+  }
+
+  render() {
+    console.log(this.props);
+    var comments;
+    if(this.state.comments){
+      comments = this.state.comments.map(function(comment, index){
+        return (
+          <li key={index}>
+            <span>{comment.author}</span>
+            <span> Posted {comment.text}</span>
+          </li>
+        )
+      });
+    }
+    return (
+      <div className="wrapper">
+      <div className="col-sm-6 col-md-4">
+      <div className="well pic-well">
+        <a href={this.props.image.get('image')}><img src={this.props.image.get('image')} alt="..." /></a>
+        <div className="caption">
+          <input type="text" className="comment-input" name="comment" value={this.state.comment} onChange={this.handleComment} placeholder="Comment"/>
+
+          <p><button onClick={this.saveComment} className="btn btn-primary" role="button">Comment</button><button className="btn btn-primary" role="button">Show Comments</button></p>
+          <div className="well">
+            <ul>
+              {comments}
+            </ul>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    )
+  }
+}
+
+
 module.exports = {
   BragBoard
 };
