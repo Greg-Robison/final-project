@@ -1,7 +1,7 @@
-var $ = require('jquery');
+var $ = window.$ = window.jQuery = require('jquery');
 var React = require('react');
-var Backbone = require('backbone');
 
+var Backbone = require('backbone');
 var Header = require('./layouts/header.jsx').Header
 var ParseFile = require('../models/parsefile').ParseFile;
 // var FishPicCollection = require('../models/fishpic').FishPicCollection;
@@ -13,6 +13,8 @@ var Footer = require('./layouts/footer.jsx').Footer;
 var UserRecords = require('./userrecords.jsx').UserRecords;
 var CommentsCollection = require('../models/comment.js').CommentsCollection;
 var Comments = require('../models/comment.js').Comments;
+
+require('bootstrap-sass');
 
 class BragBoard extends React.Component {
   constructor(props){
@@ -28,6 +30,7 @@ class BragBoard extends React.Component {
 
     this.addComment = this.addComment.bind(this);
     this.handleComment = this.handleComment.bind(this);
+    //this.handleToggle = this.handleToggle.bind(this);
     this.state = {
       pic: null,
       collection: bragPicCollection
@@ -119,13 +122,16 @@ class BragImage extends React.Component {
     image.save();
   }
 
+
+
+
   render() {
     console.log(this.props);
     var comments;
     if(this.state.comments){
       comments = this.state.comments.map(function(comment, index){
         return (
-          <li key={index}>
+          <li key={index} className="list-group-item">
             <span>{comment.author}</span>
             <span> Posted {comment.text}</span>
           </li>
@@ -140,10 +146,12 @@ class BragImage extends React.Component {
         <div className="caption">
           <input type="text" className="comment-input" name="comment" value={this.state.comment} onChange={this.handleComment} placeholder="Comment"/>
 
-          <p><button onClick={this.saveComment} className="btn btn-primary" role="button">Comment</button><button className="btn btn-primary" role="button">Show Comments</button></p>
+          <p><button onClick={this.saveComment} className="btn btn-primary" role="button">Comment</button><button data-toggle="collapse" data-target={"#toggle" + this.props.image.cid} className="btn btn-primary">Show/Hide Comments</button></p>
           <div className="well">
-            <ul>
+            <ul id={"toggle" + this.props.image.cid} className="collapse list-group">
+
               {comments}
+
             </ul>
           </div>
         </div>
