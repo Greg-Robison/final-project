@@ -26,7 +26,7 @@ class Marketing extends React.Component {
     return(
       <div className="wrapper">
 
-        <img className="lake5" src="./images/lake6.jpg" alt="" />
+        <img className="lake3" src="./images/lake6.jpg" alt="" />
           <div className="col-md-12">
               { user ? <Header></Header> : null }
           </div>

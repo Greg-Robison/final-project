@@ -12,9 +12,7 @@ var FishPic = ParseModel.extend({
 
 var FishPicCollection = ParseCollection.extend({
   model: FishPic,
-  url: function(){
-    return "https://robison.herokuapp.com/classes/Fishpic"
-  },
+  baseUrl: "https://robison.herokuapp.com/classes/Fishpic",
 //   //***********//
 // var Fishpics = Parse.Object.extend('Fishpics');
 // var query = new Parse.Query(Fishpics);
@@ -39,9 +37,9 @@ var FishPicCollection = ParseCollection.extend({
 //   }
 // })
 //************//
-  parse: function(data){
-    return data.results;
-  }
+  // parse: function(data){
+  //   return data.results;
+  // }
 });
 
 module.exports = {

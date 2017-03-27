@@ -1,4 +1,4 @@
-var $ = require('jquery');
+var $ = window.$ = window.jQuery = require('jquery');
 var React = require('react');
 var Backbone = require('backbone');
 var EXIF = require('exif-js');
@@ -22,11 +22,7 @@ var BragPic = require('../models/bragpics').BragPic;
 var NoteCollection = require('../models/note.js').NoteCollection;
 var Note = require('../models/note.js').Note;
 
-
-
-
-
-
+require('bootstrap-sass');
 
 class UserRecords extends React.Component {
   constructor(props){
@@ -35,7 +31,8 @@ class UserRecords extends React.Component {
     var userId = User.current().get('objectId');
     var fishPicCollection = new FishPicCollection();
 
-    fishPicCollection.fetch().then(function(){
+    fishPicCollection.parseWhere('imageAuthor', '_User', userId).fetch().then(function(){
+      console.log('here', fishPicCollection);
       self.setState({collection: fishPicCollection});
     });
 
@@ -136,6 +133,8 @@ handleDelete(e, image){
       //   }
       // }
 
+      // fishPic.setPointer('imageAuthor', '_User', User.currentUser().get('objectId') );
+
       fishPic.set({
         name: this.state.name,
         description: "",
@@ -215,6 +214,7 @@ handleDelete(e, image){
       ]
       var date = image.attributes.date;
 
+
       // var newDate = new Date(date);
       //
       // console.log('here', moment(newDate).format('lll'));
@@ -235,15 +235,16 @@ handleDelete(e, image){
               <ul>
                 <li>Date {date}</li>
                 <li><a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030">Weather Info</a></li>
-                <li>Lat: {image.attributes.lat}</li>
-                <li>Lng: {image.attributes.lon}</li>
+                <li>Lat: {image.get('lat')}</li>
+                <li>Lng: {image.get('lon')}</li>
+                <li><button data-toggle="collapse" data-target={"#toggle" + image.cid}>Show/Hide Map</button></li>
               </ul>
           </div>
 
         </div>
 
         <div>
-          <div style={{width: 255, height: 300,}}>
+          <div id={"toggle" + image.cid} style={{width: 255, height: 300,}}>
             <Maps center={Location} />
           </div>
         </div>

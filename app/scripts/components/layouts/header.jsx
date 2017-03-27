@@ -28,12 +28,14 @@ class Header extends React.Component {
       <div className="container-fluid">
 <div className="col-md-12">
     <div className="well well-header">
+
         <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
         <img className="links gif" src="./images/giphy.gif" alt="" />
         <span className="links"><a href="" onClick={this.logOut}> Sign Off</a></span>
         <span className="links"><a href="#userrecords/">{user.get('name') + "'s"} Records</a></span>
         <span className="links"><a href="#braggingrites/"> Bragging Rites</a></span>
-    </div>
+
+  </div>
 </div>
 </div>
     )
