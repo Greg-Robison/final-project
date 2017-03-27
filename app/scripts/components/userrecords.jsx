@@ -243,11 +243,11 @@ handleDelete(e, image){
 
         </div>
 
-        <div>
-          <div id={"toggle" + image.cid} style={{width: 255, height: 300,}}>
+        <ul id={"toggle" + image.cid} className="collapsing map-show">
+          <li style={{width: 255, height: 300,}}>
             <Maps center={Location} />
-          </div>
-        </div>
+          </li>
+        </ul>
         </div>
         </div>
       )
