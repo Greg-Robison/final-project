@@ -256,7 +256,7 @@ handleDelete(e, image){
 
     return(
       <div className="wrapper">
-        <img className="lake5" src="./images/lake8.jpeg" alt="" />
+        <img className="lake5" src="./images/lake2.jpg" alt="" />
           <div className="col-md-12">
               <Header></Header>
           </div>
