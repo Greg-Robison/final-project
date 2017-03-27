@@ -5767,6 +5767,9 @@ body {
   height: 100%;
   background-color: grey; }
 
+.map-show {
+  z-index: 200; }
+
 .forecast {
   float: right; }
 
@@ -5796,7 +5799,7 @@ li {
   padding-left: 20px; }
 
 .lake5 {
-  position: absolute;
+  position: fixed;
   width: 1300px;
   height: 800px;
   z-index: -1; }
@@ -5920,4 +5923,5 @@ h1 {
 
 .pic-well {
   box-shadow: 3px 3px 5px 6px orange; }
+
 /*# sourceMappingURL=app.css.map */

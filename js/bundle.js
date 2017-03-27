@@ -94,12 +94,14 @@ class Header extends React.Component {
       React.createElement("div", {className: "container-fluid"}, 
 React.createElement("div", {className: "col-md-12"}, 
     React.createElement("div", {className: "well well-header"}, 
+
         React.createElement("a", {href: "#"}, React.createElement("img", {className: "logo", alt: "Brand", src: "images/logo1.png"})), 
         React.createElement("img", {className: "links gif", src: "./images/giphy.gif", alt: ""}), 
         React.createElement("span", {className: "links"}, React.createElement("a", {href: "", onClick: this.logOut}, " Sign Off")), 
         React.createElement("span", {className: "links"}, React.createElement("a", {href: "#userrecords/"}, user.get('name') + "'s", " Records")), 
         React.createElement("span", {className: "links"}, React.createElement("a", {href: "#braggingrites/"}, " Bragging Rites"))
-    )
+
+  )
 )
 )
     )
@@ -140,7 +142,7 @@ class Maps extends React.Component{
   render(){
     const mapContainer = React.createElement("div", {style: {height: '100%', width: '100%'}})
 
-    
+
     return(
       React.createElement(GoogleMapLoader, {
         containerElement:  mapContainer, 
@@ -148,9 +150,10 @@ class Maps extends React.Component{
           React.createElement(GoogleMap, {
             defaultZoom: 17, 
             defaultCenter: this.props.center, 
-            options: {streetViewControl: false, mapTypeControl: true}}
+            options: {streetViewControl: true, mapTypeControl: true}}
 
           )
+
         })
     )
   }
@@ -358,7 +361,7 @@ class BragBoard extends React.Component {
     });
       return (
         React.createElement("div", null, 
-          React.createElement("img", {className: "lake4", src: "./images/lake4.jpg", alt: ""}), 
+          React.createElement("img", {className: "lake5", src: "./images/lake4.jpg", alt: ""}), 
           React.createElement("div", {className: "container"}, 
             React.createElement("div", {className: "row"}, 
             React.createElement("div", {className: "col-md-12"}, 
@@ -490,7 +493,7 @@ class Marketing extends React.Component {
     return(
       React.createElement("div", {className: "wrapper"}, 
 
-        React.createElement("img", {className: "lake5", src: "./images/lake6.jpg", alt: ""}), 
+        React.createElement("img", {className: "lake3", src: "./images/lake6.jpg", alt: ""}), 
           React.createElement("div", {className: "col-md-12"}, 
                user ? React.createElement(Header, null) : null
           ), 
@@ -771,7 +774,7 @@ module.exports = {
 
 },{"../models/user.js":20,"./layouts/login.jsx":4,"backbone":24,"jquery":52,"react":251}],12:[function(require,module,exports){
 "use strict";
-var $ = require('jquery');
+var $ = window.$ = window.jQuery = require('jquery');
 var React = require('react');
 var Backbone = require('backbone');
 var EXIF = require('exif-js');
@@ -795,11 +798,7 @@ var BragPic = require('../models/bragpics').BragPic;
 var NoteCollection = require('../models/note.js').NoteCollection;
 var Note = require('../models/note.js').Note;
 
-
-
-
-
-
+require('bootstrap-sass');
 
 class UserRecords extends React.Component {
   constructor(props){
@@ -808,7 +807,8 @@ class UserRecords extends React.Component {
     var userId = User.current().get('objectId');
     var fishPicCollection = new FishPicCollection();
 
-    fishPicCollection.fetch().then(function(){
+    fishPicCollection.parseWhere('imageAuthor', '_User', userId).fetch().then(function(){
+      console.log('here', fishPicCollection);
       self.setState({collection: fishPicCollection});
     });
 
@@ -909,6 +909,8 @@ handleDelete(e, image){
       //   }
       // }
 
+      // fishPic.setPointer('imageAuthor', '_User', User.currentUser().get('objectId') );
+
       fishPic.set({
         name: this.state.name,
         description: "",
@@ -988,6 +990,7 @@ handleDelete(e, image){
       ]
       var date = image.attributes.date;
 
+
       // var newDate = new Date(date);
       //
       // console.log('here', moment(newDate).format('lll'));
@@ -1008,15 +1011,16 @@ handleDelete(e, image){
               React.createElement("ul", null, 
                 React.createElement("li", null, "Date ", date), 
                 React.createElement("li", null, React.createElement("a", {href: "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030"}, "Weather Info")), 
-                React.createElement("li", null, "Lat: ", image.attributes.lat), 
-                React.createElement("li", null, "Lng: ", image.attributes.lon)
+                React.createElement("li", null, "Lat: ", image.get('lat')), 
+                React.createElement("li", null, "Lng: ", image.get('lon')), 
+                React.createElement("li", null, React.createElement("button", {"data-toggle": "collapse", "data-target": "#toggle" + image.cid}, "Show/Hide Map"))
               )
           )
 
         ), 
 
-        React.createElement("div", null, 
-          React.createElement("div", {style: {width: 255, height: 300,}}, 
+        React.createElement("ul", {id: "toggle" + image.cid, className: "collapsing map-show"}, 
+          React.createElement("li", {style: {width: 255, height: 300,}}, 
             React.createElement(Maps, {center: Location})
           )
         )
@@ -1066,7 +1070,7 @@ module.exports = {
   UserRecords
 };
 
-},{"../models/bragpics":14,"../models/comment":15,"../models/fishpic":16,"../models/googlemaps":17,"../models/note.js":18,"../models/parsefile":19,"../models/user":20,"./layouts/footer.jsx":2,"./layouts/header.jsx":3,"./layouts/maps.jsx":5,"./layouts/places.jsx":6,"./publicrecords.jsx":10,"backbone":24,"exif-js":27,"jquery":52,"moment":53,"react":251}],13:[function(require,module,exports){
+},{"../models/bragpics":14,"../models/comment":15,"../models/fishpic":16,"../models/googlemaps":17,"../models/note.js":18,"../models/parsefile":19,"../models/user":20,"./layouts/footer.jsx":2,"./layouts/header.jsx":3,"./layouts/maps.jsx":5,"./layouts/places.jsx":6,"./publicrecords.jsx":10,"backbone":24,"bootstrap-sass":25,"exif-js":27,"jquery":52,"moment":53,"react":251}],13:[function(require,module,exports){
 "use strict";
 var $ = require('jquery');
 var React = require('react');
@@ -1212,9 +1216,7 @@ var FishPic = ParseModel.extend({
 
 var FishPicCollection = ParseCollection.extend({
   model: FishPic,
-  url: function(){
-    return "https://robison.herokuapp.com/classes/Fishpic"
-  },
+  baseUrl: "https://robison.herokuapp.com/classes/Fishpic",
 //   //***********//
 // var Fishpics = Parse.Object.extend('Fishpics');
 // var query = new Parse.Query(Fishpics);
@@ -1239,9 +1241,9 @@ var FishPicCollection = ParseCollection.extend({
 //   }
 // })
 //************//
-  parse: function(data){
-    return data.results;
-  }
+  // parse: function(data){
+  //   return data.results;
+  // }
 });
 
 module.exports = {
@@ -1348,7 +1350,6 @@ var ParseCollection = Backbone.Collection.extend({
  parseWhere: function(field, value, objectId){
    if(objectId){
      value = {
-       field: field,
        className: value,
        objectId: objectId,
        '__type': 'Pointer'
@@ -1359,13 +1360,13 @@ var ParseCollection = Backbone.Collection.extend({
    return this;
  },
  url: function(){
-   var url = this.base;
-
+   var url = this.baseUrl;
+   console.log('url', url);
    if(Object.keys(this.whereClause).length > 0){
      url += '?where=' + JSON.stringify(this.whereClause);
+     console.log('here', url);
      this.whereClause = {};
    }
-
    return url;
  },
  parse: function(data){
