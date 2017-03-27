@@ -1032,7 +1032,7 @@ handleDelete(e, image){
 
     return(
       React.createElement("div", {className: "wrapper"}, 
-        React.createElement("img", {className: "lake5", src: "./images/lake8.jpeg", alt: ""}), 
+        React.createElement("img", {className: "lake5", src: "./images/lake2.jpg", alt: ""}), 
           React.createElement("div", {className: "col-md-12"}, 
               React.createElement(Header, null)
           ), 
