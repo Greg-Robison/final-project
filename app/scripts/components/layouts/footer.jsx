@@ -13,7 +13,7 @@ class Footer extends React.Component{
         <div className="col-md-4">
           <h3>Commited to Preservation</h3>
           <h5>Hooked is dedicated to the preservation of the many species of fish in our lakes and ponds.
-          Here at Hooked we practice catch and release, so that anglers can enjoy fishing for years to come!</h5>
+          Here at Hooked we practice catch and release, so anglers can enjoy fishing for years to come!</h5>
         </div>
         <div className="col-md-4">
           <h3>Something goes here</h3>
