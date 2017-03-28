@@ -48,7 +48,7 @@ class Footer extends React.Component{
         React.createElement("div", {className: "col-md-4"}, 
           React.createElement("h3", null, "Commited to Preservation"), 
           React.createElement("h5", null, "Hooked is dedicated to the preservation of the many species of fish in our lakes and ponds." + ' ' +
-          "Here at Hooked we practice catch and release, so that anglers can enjoy fishing for years to come!")
+          "Here at Hooked we practice catch and release, so anglers can enjoy fishing for years to come!")
         ), 
         React.createElement("div", {className: "col-md-4"}, 
           React.createElement("h3", null, "Something goes here"), 
