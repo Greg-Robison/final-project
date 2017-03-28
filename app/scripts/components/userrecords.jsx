@@ -33,7 +33,9 @@ class UserRecords extends React.Component {
 
     fishPicCollection.parseWhere('imageAuthor', '_User', userId).fetch().then(function(){
       console.log('here', fishPicCollection);
-      self.setState({collection: fishPicCollection});
+      self.setState({
+        collection: fishPicCollection
+      });
     });
 
     this.handleImageChange = this.handleImageChange.bind(this);
@@ -51,7 +53,9 @@ class UserRecords extends React.Component {
       lat: null,
       lon: null,
       latRef: null,
-      lonRef: null
+      lonRef: null,
+      note: null,
+      notes: []
     };
 
   }
@@ -67,6 +71,8 @@ class UserRecords extends React.Component {
     // navigate to login route
     Backbone.history.navigate('login/', {trigger: true});
   }
+
+
 
   handleImageChange(e) {
     var file = e.target.files[0];
@@ -142,7 +148,8 @@ handleDelete(e, image){
         userId: user.objectId,
         lat: this.state.lat,
         lon: this.state.lon,
-        date: this.state.date
+        date: this.state.date,
+        notes: this.state.notes
       });
 
 
@@ -172,33 +179,71 @@ handleDelete(e, image){
 
   };
 
-  addNote(e){
-    console.log('comment on submit', this.state.note);
-    e.preventDefault();
-    var user = JSON.parse(localStorage.user);
-    var note = new Note();
-    note.set({
-      name: user.objectId,
-      note: this.state.note,
-      userId: user.objectId,
-      date: new Date()
-    });
-    console.log('note', note);
-    note.save();
+  addNote(image){
+    console.log('image', image);
+    var note = this.state.note;
+    console.log(note);
+    image.get('notes').push(note);
+    image.save();
+
+
+
+
+    // var notes = this.state.notes;
+    // var note =
+
+    // console.log('comment on submit', this.state.note);
+    // e.preventDefault();
+    // var user = JSON.parse(localStorage.user);
+    // var note = new Note();
+    // note.set({
+    //   name: user.objectId,
+    //   note: this.state.note,
+    //   userId: user.objectId,
+    //   date: new Date()
+    // });
+    // console.log('note', note);
+    // note.save();
+
+
+
+
+    // e.preventDefault();
+    // var notes = this.state.notes;
+    // notes.push({
+    //   note: e.target.value
+    // });
+    // this.setState({
+    //   notes
+    // })
+    // console.log('note on input', this.state.notes);
 
   }
 
   handleNote(e){
     e.preventDefault();
+
     this.setState({
       note: e.target.value
-    })
-    console.log('note on input', this.state.note);
+    });
   }
   render(){
+    var notes;
+    if(this.state.notes){
+      notes = this.state.notes.map(function(notes, index){
+        return (
+          <li key={index} className="list-group-item">
+            <span>{notes.author}</span>
+            <span>{notes.text}</span>
+          </li>
+        )
+      });
+    }
 
     var self = this;
     var images = self.state.collection.map(function(image){
+
+      // var image = image;
 
       const Location = {
         lat: image.attributes.lat,
@@ -224,24 +269,33 @@ handleDelete(e, image){
         <div className="wrapper" key={image.cid}>
 
         <div className="col-sm-6 col-md-3">
-        <div className="well" key={image.cid}>
+        <div className="well ws" key={image.cid}>
           <a href={image.get('image')}><img src={image.get('image')} alt="..." /></a>
 
           <div className="caption">
-            <p>Nice Fish!!</p>
-            <a onClick={() => self.handlePost(image)}>Post to Bragging Rites</a>
+
+            <button className="action" onClick={() => self.handlePost(image)}>Post to Bragging Rites</button>
             <input type="text" className="comment-input" name="note" value={self.state.name} onChange={self.handleNote}placeholder="Your Notes"/>
-            <p><button onClick={self.addNote} className="btn btn-primary">Add Notes</button><button className="btn btn-primary">Show Notes</button> <button onClick={(e)=>self.handleDelete(e, image)} className="btn btn-default">Delete Post</button></p>
+            <p><button onClick={(e) => {self.addNote(image)}} className="add-show btn btn-primary">Add Notes</button><button data-toggle="collapse" data-target={"#toggles" + image.cid} className="add-show btn btn-primary">Show Notes</button> <button onClick={(e)=>self.handleDelete(e, image)} className="action btn btn-default">Delete Post</button></p>
               <ul>
                 <li>Date {date}</li>
-                <li><a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030">Weather Info</a></li>
+                <li><a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030" target="_blank">Weather Info</a></li>
                 <li>Lat: {image.get('lat')}</li>
                 <li>Lng: {image.get('lon')}</li>
-                <li><button data-toggle="collapse" data-target={"#toggle" + image.cid}>Show/Hide Map</button></li>
+                <li><button className="action" data-toggle="collapse" data-target={"#toggle" + image.cid}>Show/Hide Map</button></li>
               </ul>
           </div>
 
+
         </div>
+
+        <ul id={"toggles" + image.cid} className="collapsing list-group">
+          <li  className="list-group-item">
+            {image.get('notes')}
+          </li>
+
+        </ul>
+
 
         <ul id={"toggle" + image.cid} className="collapsing map-show">
           <li style={{width: 255, height: 300,}}>
@@ -290,6 +344,11 @@ handleDelete(e, image){
     )
   }
 };
+
+
+
+
+
 module.exports = {
   UserRecords
 };

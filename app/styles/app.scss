@@ -11,9 +11,20 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 *::after {
   box-sizing: border-box;
 }
+
 body{
 height: 100%;
 background-color: grey;
+font: helvetica;
+}
+.ws{
+  background-color: #D1C8FD;
+}
+.add-show{
+  background-color: #8F00F3;
+}
+.action{
+
 }
 .map-show{
   z-index: 200;
@@ -35,7 +46,7 @@ li{
 }
 .welcome{
   color: #7E00D7;
-  text-shadow: 2px 2px 2px orange;
+  text-shadow: 2px 2px 2px #F3A329;
 }
 .user-name{
   color: #7E00D7;
@@ -163,7 +174,7 @@ h1{
 .weather-span{
   float: right;
   font-size: 20px;
-  color: orange;
+  color: #F3A329;
   padding-left: 20px;
   text-shadow: 2px 2px 2px #000;
 }
@@ -180,7 +191,7 @@ h1{
   color: purple;
 }
 .pic-well{
-  -moz-box-shadow:    3px 3px 5px 6px orange;
-  -webkit-box-shadow: 3px 3px 5px 6px orange;
-  box-shadow:         3px 3px 5px 6px orange;
+  -moz-box-shadow:    3px 3px 5px 6px #F3A329;
+  -webkit-box-shadow: 3px 3px 5px 6px #F3A329;
+  box-shadow:         3px 3px 5px 6px #F3A329;
 }
