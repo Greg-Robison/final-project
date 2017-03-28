@@ -42,12 +42,13 @@ class Footer extends React.Component{
       React.createElement("hr", null), 
       React.createElement("div", {className: "row well footer"}, 
         React.createElement("div", {className: "col-md-4"}, 
-          React.createElement("h3", null, "Something goes here"), 
-          React.createElement("h5", null, "something Else Goes here")
+          React.createElement("h3", null, "E-Mail us At:"), 
+          React.createElement("a", {href: "mailto:gjrobison64@gmail.com"}, React.createElement("img", {className: "logo", alt: "Brand", src: "images/logo1.png"}))
         ), 
         React.createElement("div", {className: "col-md-4"}, 
-          React.createElement("h3", null, "Something goes here"), 
-          React.createElement("h5", null, "something Else Goes here")
+          React.createElement("h3", null, "Commited to Preservation"), 
+          React.createElement("h5", null, "Hooked is dedicated to the preservation of the many species of fish in our lakes and ponds." + ' ' +
+          "Here at Hooked we practice catch and release, so that anglers can enjoy fishing for years to come!")
         ), 
         React.createElement("div", {className: "col-md-4"}, 
           React.createElement("h3", null, "Something goes here"), 
@@ -434,7 +435,7 @@ class BragImage extends React.Component {
         React.createElement("div", {className: "caption"}, 
           React.createElement("input", {type: "text", className: "comment-input", name: "comment", value: this.state.comment, onChange: this.handleComment, placeholder: "Comment"}), 
 
-          React.createElement("p", null, React.createElement("button", {onClick: this.saveComment, className: "btn btn-primary", role: "button"}, "Comment"), React.createElement("button", {"data-toggle": "collapse", "data-target": "#toggle" + this.props.image.cid, className: "btn btn-primary"}, "Show/Hide Comments")), 
+          React.createElement("p", null, React.createElement("button", {onClick: this.saveComment, className: "add-show btn btn-primary", role: "button"}, "Comment"), React.createElement("button", {"data-toggle": "collapse", "data-target": "#toggle" + this.props.image.cid, className: "add-show btn btn-primary"}, "Show/Hide Comments")), 
           React.createElement("div", {className: "well"}, 
             React.createElement("ul", {id: "toggle" + this.props.image.cid, className: "collapse list-group"}, 
 
@@ -528,7 +529,7 @@ class Marketing extends React.Component {
       React.createElement("div", {className: "row"}, 
 
           React.createElement("img", {className: "logo-bottom", alt: "Brand", src: "images/logo1.png"}), 
-            React.createElement("a", {href: "http://www.wunderground.com/US/SC/Greenville.html"}, React.createElement("button", {className: "signin-btn btn btn-primary forecast"}, React.createElement("img", {src: "./images/button-logo1.png"}), "Forecast"))
+            React.createElement("a", {href: "http://www.wunderground.com/US/SC/Greenville.html", target: "_blank"}, React.createElement("button", {className: "signin-btn btn btn-primary forecast"}, React.createElement("img", {src: "./images/button-logo1.png"}), "Forecast"))
 
       )
     ), 
@@ -809,7 +810,9 @@ class UserRecords extends React.Component {
 
     fishPicCollection.parseWhere('imageAuthor', '_User', userId).fetch().then(function(){
       console.log('here', fishPicCollection);
-      self.setState({collection: fishPicCollection});
+      self.setState({
+        collection: fishPicCollection
+      });
     });
 
     this.handleImageChange = this.handleImageChange.bind(this);
@@ -827,7 +830,9 @@ class UserRecords extends React.Component {
       lat: null,
       lon: null,
       latRef: null,
-      lonRef: null
+      lonRef: null,
+      note: null,
+      notes: []
     };
 
   }
@@ -843,6 +848,8 @@ class UserRecords extends React.Component {
     // navigate to login route
     Backbone.history.navigate('login/', {trigger: true});
   }
+
+
 
   handleImageChange(e) {
     var file = e.target.files[0];
@@ -918,7 +925,8 @@ handleDelete(e, image){
         userId: user.objectId,
         lat: this.state.lat,
         lon: this.state.lon,
-        date: this.state.date
+        date: this.state.date,
+        notes: this.state.notes
       });
 
 
@@ -948,33 +956,71 @@ handleDelete(e, image){
 
   };
 
-  addNote(e){
-    console.log('comment on submit', this.state.note);
-    e.preventDefault();
-    var user = JSON.parse(localStorage.user);
-    var note = new Note();
-    note.set({
-      name: user.objectId,
-      note: this.state.note,
-      userId: user.objectId,
-      date: new Date()
-    });
-    console.log('note', note);
-    note.save();
+  addNote(image){
+    console.log('image', image);
+    var note = this.state.note;
+    console.log(note);
+    image.get('notes').push(note);
+    image.save();
+
+
+
+
+    // var notes = this.state.notes;
+    // var note =
+
+    // console.log('comment on submit', this.state.note);
+    // e.preventDefault();
+    // var user = JSON.parse(localStorage.user);
+    // var note = new Note();
+    // note.set({
+    //   name: user.objectId,
+    //   note: this.state.note,
+    //   userId: user.objectId,
+    //   date: new Date()
+    // });
+    // console.log('note', note);
+    // note.save();
+
+
+
+
+    // e.preventDefault();
+    // var notes = this.state.notes;
+    // notes.push({
+    //   note: e.target.value
+    // });
+    // this.setState({
+    //   notes
+    // })
+    // console.log('note on input', this.state.notes);
 
   }
 
   handleNote(e){
     e.preventDefault();
+
     this.setState({
       note: e.target.value
-    })
-    console.log('note on input', this.state.note);
+    });
   }
   render(){
+    var notes;
+    if(this.state.notes){
+      notes = this.state.notes.map(function(notes, index){
+        return (
+          React.createElement("li", {key: index, className: "list-group-item"}, 
+            React.createElement("span", null, notes.author), 
+            React.createElement("span", null, notes.text)
+          )
+        )
+      });
+    }
 
     var self = this;
     var images = self.state.collection.map(function(image){
+
+      // var image = image;
 
       const Location = {
         lat: image.attributes.lat,
@@ -1000,24 +1046,33 @@ handleDelete(e, image){
         React.createElement("div", {className: "wrapper", key: image.cid}, 
 
         React.createElement("div", {className: "col-sm-6 col-md-3"}, 
-        React.createElement("div", {className: "well", key: image.cid}, 
+        React.createElement("div", {className: "well ws", key: image.cid}, 
           React.createElement("a", {href: image.get('image')}, React.createElement("img", {src: image.get('image'), alt: "..."})), 
 
           React.createElement("div", {className: "caption"}, 
-            React.createElement("p", null, "Nice Fish!!"), 
-            React.createElement("a", {onClick: () => self.handlePost(image)}, "Post to Bragging Rites"), 
+
+            React.createElement("button", {className: "action", onClick: () => self.handlePost(image)}, "Post to Bragging Rites"), 
             React.createElement("input", {type: "text", className: "comment-input", name: "note", value: self.state.name, onChange: self.handleNote, placeholder: "Your Notes"}), 
-            React.createElement("p", null, React.createElement("button", {onClick: self.addNote, className: "btn btn-primary"}, "Add Notes"), React.createElement("button", {className: "btn btn-primary"}, "Show Notes"), " ", React.createElement("button", {onClick: (e)=>self.handleDelete(e, image), className: "btn btn-default"}, "Delete Post")), 
+            React.createElement("p", null, React.createElement("button", {onClick: (e) => {self.addNote(image)}, className: "add-show btn btn-primary"}, "Add Notes"), React.createElement("button", {"data-toggle": "collapse", "data-target": "#toggles" + image.cid, className: "add-show btn btn-primary"}, "Show Notes"), " ", React.createElement("button", {onClick: (e)=>self.handleDelete(e, image), className: "action btn btn-default"}, "Delete Post")), 
               React.createElement("ul", null, 
                 React.createElement("li", null, "Date ", date), 
-                React.createElement("li", null, React.createElement("a", {href: "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030"}, "Weather Info")), 
+                React.createElement("li", null, React.createElement("a", {href: "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030", target: "_blank"}, "Weather Info")), 
                 React.createElement("li", null, "Lat: ", image.get('lat')), 
                 React.createElement("li", null, "Lng: ", image.get('lon')), 
-                React.createElement("li", null, React.createElement("button", {"data-toggle": "collapse", "data-target": "#toggle" + image.cid}, "Show/Hide Map"))
+                React.createElement("li", null, React.createElement("button", {className: "action", "data-toggle": "collapse", "data-target": "#toggle" + image.cid}, "Show/Hide Map"))
               )
           )
 
+
         ), 
+
+        React.createElement("ul", {id: "toggles" + image.cid, className: "collapsing list-group"}, 
+          React.createElement("li", {className: "list-group-item"}, 
+            image.get('notes')
+          )
+
+        ), 
+
 
         React.createElement("ul", {id: "toggle" + image.cid, className: "collapsing map-show"}, 
           React.createElement("li", {style: {width: 255, height: 300,}}, 
@@ -1066,6 +1121,11 @@ handleDelete(e, image){
     )
   }
 };
+
+
+
+
+
 module.exports = {
   UserRecords
 };
