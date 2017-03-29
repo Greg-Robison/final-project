@@ -962,39 +962,8 @@ handleDelete(e, image){
     console.log(note);
     image.get('notes').push(note);
     image.save();
-
-
-
-
-    // var notes = this.state.notes;
-    // var note =
-
-    // console.log('comment on submit', this.state.note);
-    // e.preventDefault();
-    // var user = JSON.parse(localStorage.user);
-    // var note = new Note();
-    // note.set({
-    //   name: user.objectId,
-    //   note: this.state.note,
-    //   userId: user.objectId,
-    //   date: new Date()
-    // });
-    // console.log('note', note);
-    // note.save();
-
-
-
-
-    // e.preventDefault();
-    // var notes = this.state.notes;
-    // notes.push({
-    //   note: e.target.value
-    // });
-    // this.setState({
-    //   notes
-    // })
-    // console.log('note on input', this.state.notes);
-
+    this.forceUpdate();
+    this.refs.addNotes.value = '';
   }
 
   handleNote(e){
@@ -1004,6 +973,8 @@ handleDelete(e, image){
       note: e.target.value
     });
   }
+
+
   render(){
     var notes;
     if(this.state.notes){
@@ -1021,7 +992,6 @@ handleDelete(e, image){
     var images = self.state.collection.map(function(image){
 
       // var image = image;
-
       const Location = {
         lat: image.attributes.lat,
         lng: image.attributes.lon
@@ -1029,18 +999,12 @@ handleDelete(e, image){
       const markers = [
         {
           location: {
-              lat: 34.10241666666667,
-              lng: -82.62381111111111
+              lat: 34.94298055555555,
+              lng: -82.36498333333333
           }
         }
       ]
       var date = image.attributes.date;
-
-
-      // var newDate = new Date(date);
-      //
-      // console.log('here', moment(newDate).format('lll'));
-
 
       return (
         React.createElement("div", {className: "wrapper", key: image.cid}, 
@@ -1052,7 +1016,7 @@ handleDelete(e, image){
           React.createElement("div", {className: "caption"}, 
 
             React.createElement("button", {className: "action", onClick: () => self.handlePost(image)}, "Post to Bragging Rites"), 
-            React.createElement("input", {type: "text", className: "comment-input", name: "note", value: self.state.name, onChange: self.handleNote, placeholder: "Your Notes"}), 
+            React.createElement("input", {type: "text", className: "comment-input", name: "note", value: self.state.name, onChange: self.handleNote, placeholder: "Your Notes", ref: "addNotes"}), 
             React.createElement("p", null, React.createElement("button", {onClick: (e) => {self.addNote(image)}, className: "add-show btn btn-primary"}, "Add Notes"), React.createElement("button", {"data-toggle": "collapse", "data-target": "#toggles" + image.cid, className: "add-show btn btn-primary"}, "Show Notes"), " ", React.createElement("button", {onClick: (e)=>self.handleDelete(e, image), className: "action btn btn-default"}, "Delete Post")), 
               React.createElement("ul", null, 
                 React.createElement("li", null, "Date ", date), 
@@ -1104,27 +1068,15 @@ handleDelete(e, image){
                     React.createElement("span", {className: "upload"}, React.createElement("button", {className: "signup-btn btn btn-primary", onClick: this.handleUpload}, React.createElement("img", {src: "./images/button-logo1.png"}), "Upload Photo")), 
                     images
                 )
-
-
-
-
-
-
                 )
-
             )
           )
-
         ), 
         React.createElement(Footer, null)
       )
     )
   }
 };
-
-
-
-
 
 module.exports = {
   UserRecords
