@@ -228,11 +228,18 @@ handleDelete(e, image){
         }
       ]
       var date = image.attributes.date;
+      var notes = image.get('notes').map(function(note, index){
+        return(
+
+          <li className="list-group-item" key={index}>{note}</li>
+        )
+      });
+
 
       return (
         <div className="wrapper" key={image.cid}>
 
-        <div className="col-sm-6 col-md-3">
+        <div className="col-sm-6 col-md-4">
         <div className="well ws" key={image.cid}>
           <a href={image.get('image')}><img src={image.get('image')} alt="..." /></a>
 
@@ -254,15 +261,15 @@ handleDelete(e, image){
         </div>
 
         <ul id={"toggles" + image.cid} className="collapsing list-group">
-          <li  className="list-group-item">
-            {image.get('notes')}
-          </li>
+
+            {notes}
+
 
         </ul>
 
 
         <ul id={"toggle" + image.cid} className="collapsing map-show">
-          <li style={{width: 255, height: 300,}}>
+          <li style={{width: 400, height: 500,}}>
             <Maps center={Location} />
           </li>
         </ul>
@@ -289,7 +296,9 @@ handleDelete(e, image){
                     <img src={this.state.preview} height="250" width="200" alt="Your Brag Picture Goes Here" />
                   </form>
                     <span className="upload"><button className="signup-btn btn btn-primary" onClick={this.handleUpload}><img src="./images/button-logo1.png"/>Upload Photo</button></span>
+
                     {images}
+
                 </div>
                 </div>
             </div>
