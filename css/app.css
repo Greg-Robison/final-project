@@ -5930,4 +5930,9 @@ h1 {
 
 .pic-well {
   box-shadow: 3px 3px 5px 6px #F3A329; }
+
+.comment-input {
+  width: 300px;
+  height: 35px; }
+
 /*# sourceMappingURL=app.css.map */

@@ -1005,11 +1005,18 @@ handleDelete(e, image){
         }
       ]
       var date = image.attributes.date;
+      var notes = image.get('notes').map(function(note, index){
+        return(
+
+          React.createElement("li", {className: "list-group-item", key: index}, note)
+        )
+      });
+
 
       return (
         React.createElement("div", {className: "wrapper", key: image.cid}, 
 
-        React.createElement("div", {className: "col-sm-6 col-md-3"}, 
+        React.createElement("div", {className: "col-sm-6 col-md-4"}, 
         React.createElement("div", {className: "well ws", key: image.cid}, 
           React.createElement("a", {href: image.get('image')}, React.createElement("img", {src: image.get('image'), alt: "..."})), 
 
@@ -1031,15 +1038,15 @@ handleDelete(e, image){
         ), 
 
         React.createElement("ul", {id: "toggles" + image.cid, className: "collapsing list-group"}, 
-          React.createElement("li", {className: "list-group-item"}, 
-            image.get('notes')
-          )
+
+            notes
+
 
         ), 
 
 
         React.createElement("ul", {id: "toggle" + image.cid, className: "collapsing map-show"}, 
-          React.createElement("li", {style: {width: 255, height: 300,}}, 
+          React.createElement("li", {style: {width: 400, height: 500,}}, 
             React.createElement(Maps, {center: Location})
           )
         )
@@ -1066,7 +1073,9 @@ handleDelete(e, image){
                     React.createElement("img", {src: this.state.preview, height: "250", width: "200", alt: "Your Brag Picture Goes Here"})
                   ), 
                     React.createElement("span", {className: "upload"}, React.createElement("button", {className: "signup-btn btn btn-primary", onClick: this.handleUpload}, React.createElement("img", {src: "./images/button-logo1.png"}), "Upload Photo")), 
+
                     images
+
                 )
                 )
             )
