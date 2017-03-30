@@ -25,19 +25,32 @@ class Header extends React.Component {
   render(){
     var user = User.current();
     return(
+
       <div className="container-fluid">
 <div className="col-md-12">
     <div className="well well-header">
 
-        <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
-        <img className="links gif" src="./images/giphy.gif" alt="" />
-        <span className="links"><a href="" onClick={this.logOut}> Sign Off</a></span>
-        <span className="links"><a href="#userrecords/">{user.get('name') + "'s"} Records</a></span>
-        <span className="links"><a href="#braggingrites/"> Bragging Rites</a></span>
+      <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
+      <img className="links gif" src="./images/giphy.gif" alt="" />
 
+
+      <div className="dropdown links">
+
+        <a className="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <h3 className="welcome name">Welcome {user.get('name')}</h3>
+
+        </a>
+        <ul className="dropdown-menu links" aria-labelledby="dropdownMenu1">
+          <li><a className="links" href="#braggingrites/"> Bragging Rites</a></li>
+        <li><a className="links" href="#userrecords/">{user.get('name') + "'s"} Records</a></li>
+          <li><a className="links" href="" onClick={this.logOut}> Sign Off</a></li>
+
+      </ul>
+      </div>
   </div>
 </div>
 </div>
+
     )
   }
 };

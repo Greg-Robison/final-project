@@ -31,7 +31,9 @@ class Marketing extends React.Component {
               { user ? <Header></Header> : null }
           </div>
       <div className="container">
+
         <div className="row">
+
             <span className="signup"><a href="#signup/"><button className="signup-btn btn btn-primary"><img src="./images/button-logo1.png"/>Sign Up</button></a></span>
               <span className="signin"><a href="#login/"><button className="signin-btn btn btn-primary"><img src="./images/button-logo1.png"/>Sign In</button></a></span>
 
@@ -40,7 +42,7 @@ class Marketing extends React.Component {
         <h1 className="current-weather text-center">Current Greenville SC Weather</h1>
         <div className="weather col-md-12">
 
-          <span className="weather-span">Moon Phase<p>.75 Waxing</p></span>
+          <span className="weather-span">Moon Phase<p>Waxing Crescent</p></span>
           <span className="weather-span">
             Barometric Pressure
             <p>{this.state.weather.get('pressure_in')}</p>
@@ -59,8 +61,10 @@ class Marketing extends React.Component {
 
     <div className="container-fluid">
       <div className="row">
+        <div className="col-md-12">
 
           <img className="logo-bottom" alt="Brand" src="images/logo1.png" />
+          </div>
             <a href="http://www.wunderground.com/US/SC/Greenville.html" target="_blank"><button className="signin-btn btn btn-primary forecast"><img src="./images/button-logo1.png"></img>Forecast</button></a>
 
       </div>

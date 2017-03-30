@@ -35,7 +35,7 @@ class LoginContainer extends React.Component{
       <div className="container">
         <div className="row">
           <div className="col-md-5">
-              <h1 className="welcome">Already a member Log In</h1>
+              <h1 className="welcome si">Already a member Log In</h1>
               <LoginForm action={this.login} submitBtn="Login" />
           </div>
 

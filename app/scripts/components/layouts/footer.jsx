@@ -4,7 +4,7 @@ class Footer extends React.Component{
   render(){
     return(
     <div className="container">
-      <hr></hr>
+      <hr className="rule"></hr>
       <div className="row well footer">
         <div className="col-md-4">
           <h3>E-Mail us At:</h3>
@@ -16,8 +16,8 @@ class Footer extends React.Component{
           Here at Hooked we practice catch and release, so anglers can enjoy fishing for years to come!</h5>
         </div>
         <div className="col-md-4">
-          <h3>Something goes here</h3>
-          <h5>something Else Goes here</h5>
+          <h3>South Carolina Bass Fishing</h3>
+          <h5>for more information on SC Bass fishing click <a href="http://www.scbassfed.org/" target="_blank">here.</a></h5>
         </div>
       </div>
     </div>

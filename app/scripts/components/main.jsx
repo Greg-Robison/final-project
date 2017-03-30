@@ -78,7 +78,10 @@ class BragBoard extends React.Component {
             <div className="row">
             <div className="col-md-12">
                 <Header></Header>
-                {images}
+
+            </div>
+            <div className="brags">
+              {images}
             </div>
             </div>
             <div className="container">
@@ -144,7 +147,7 @@ class BragImage extends React.Component {
       <div className="well pic-well">
         <a href={this.props.image.get('image')}><img src={this.props.image.get('image')} alt="..." /></a>
         <div className="caption">
-          <input type="text" className="comment-input" name="comment" value={this.state.comment} onChange={this.handleComment} placeholder="Comment"/>
+          <div className="input"><input type="text" className="comment-input" name="comment" value={this.state.comment} onChange={this.handleComment} placeholder="Comment"/></div>
 
           <p><button onClick={this.saveComment} className="add-show btn btn-primary" role="button">Comment</button><button data-toggle="collapse" data-target={"#toggle" + this.props.image.cid} className="add-show btn btn-primary">Show/Hide Comments</button></p>
           <div className="well">

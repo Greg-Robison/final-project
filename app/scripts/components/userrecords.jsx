@@ -245,20 +245,20 @@ handleDelete(e, image){
 
           <div className="caption">
 
-            <button className="action" onClick={() => self.handlePost(image)}>Post to Bragging Rites</button>
-            <input type="text" className="comment-input" name="note" value={self.state.name} onChange={self.handleNote} placeholder="Your Notes" ref="addNotes"/>
-            <p><button onClick={(e) => {self.addNote(image)}} className="add-show btn btn-primary">Add Notes</button><button data-toggle="collapse" data-target={"#toggles" + image.cid} className="add-show btn btn-primary">Show Notes</button> <button onClick={(e)=>self.handleDelete(e, image)} className="action btn btn-default">Delete Post</button></p>
+            <div className="post"><button className="post-button btn btn-default" onClick={() => self.handlePost(image)}>Post to Bragging Rites</button></div>
+            <div className="input"><input type="text" className="comment-input" name="note" value={self.state.name} onChange={self.handleNote} placeholder="Your Notes" ref="addNotes"/></div>
+            <p><button onClick={(e) => {self.addNote(image)}} className="add-show btn post-button">Add Notes</button><button data-toggle="collapse" data-target={"#toggles" + image.cid} className="add-show btn post-button">Show Notes</button> <button onClick={(e)=>self.handleDelete(e, image)} className="action btn btn-danger">Delete Post</button></p>
               <ul>
                 <li>Date {date}</li>
-                <li><a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030" target="_blank">Weather Info</a></li>
+                <li><a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030" target="_blank"><h3 className="weather-info">Weather Info</h3></a></li>
                 <li>Lat: {image.get('lat')}</li>
                 <li>Lng: {image.get('lon')}</li>
-                <li><button className="action" data-toggle="collapse" data-target={"#toggle" + image.cid}>Show/Hide Map</button></li>
+                <li><button className="btn post-button" data-toggle="collapse" data-target={"#toggle" + image.cid}>Show/Hide Map</button></li>
               </ul>
-          </div>
 
 
-        </div>
+
+
 
         <ul id={"toggles" + image.cid} className="collapsing list-group">
 
@@ -269,10 +269,12 @@ handleDelete(e, image){
 
 
         <ul id={"toggle" + image.cid} className="collapsing map-show">
-          <li style={{width: 400, height: 500,}}>
+          <li style={{width: 330, height: 400,}}>
             <Maps center={Location} />
           </li>
         </ul>
+        </div>
+        </div>
         </div>
         </div>
       )
@@ -282,20 +284,24 @@ handleDelete(e, image){
     return(
       <div className="wrapper">
         <img className="lake5" src="./images/lake2.jpg" alt="" />
+        <div className="row">
           <div className="col-md-12">
+
               <Header></Header>
+
+          </div>
           </div>
         <div className="container">
-          <div className="row">
+          <div className="user row">
             <div className="col-md-12">
-              <h1 className="user-data">Keep The Weather Data From Your Fishing Trips</h1>
+              <h1 className="user-data">Track Your Fishing Trips</h1>
                 <div className="row">
                   <div className="col-md-12">
                   <form encType="multipart/form-data">
                     <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />
                     <img src={this.state.preview} height="250" width="200" alt="Your Brag Picture Goes Here" />
                   </form>
-                    <span className="upload"><button className="signup-btn btn btn-primary" onClick={this.handleUpload}><img src="./images/button-logo1.png"/>Upload Photo</button></span>
+                    <div className="upload-button"><span className="upload"><button className="btn post-button" onClick={this.handleUpload}>Upload Photo</button></span></div>
 
                     {images}
 
