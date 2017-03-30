@@ -5765,17 +5765,27 @@ button.close {
 
 body {
   height: 100%;
-  background-color: grey;
+  background-color: #55524A;
   font: helvetica; }
 
 .ws {
-  background-color: #D1C8FD; }
+  background-color: #BEAF7F;
+  border-style: none;
+  margin-left: -15px; }
+
+.post {
+  padding-top: 8px;
+  padding-bottom: 8px; }
+
+.name {
+  margin-top: 15px; }
 
 .add-show {
   background-color: #8F00F3; }
 
 .map-show {
-  z-index: 200; }
+  z-index: 200;
+  margin-left: -50px; }
 
 .forecast {
   float: right; }
@@ -5786,6 +5796,9 @@ body {
 
 li {
   list-style: none; }
+
+.user {
+  margin-top: 35px; }
 
 .user-data {
   color: #7E00D7;
@@ -5833,7 +5846,7 @@ li {
   float: right;
   padding-left: 20px;
   font-size: 20px;
-  z-index: 10; }
+  z-index: 300; }
 
 .signin {
   margin-right: 20px;
@@ -5868,7 +5881,8 @@ h1 {
   color: black; }
 
 .well-header {
-  opacity: 0.6;
+  width: 100%;
+  opacity: 0.8;
   z-index: 5; }
 
 .thumbnail {
@@ -5900,6 +5914,10 @@ h1 {
   width: 60px;
   background-color: #AF57EE; }
 
+@media screen and (max-width: 413px) {
+  .logo-bottom {
+    display: none; } }
+
 .click {
   color: #AF57EE; }
 
@@ -5925,14 +5943,35 @@ h1 {
   height: 300px; }
 
 .footer {
-  background-color: slategray;
-  color: purple; }
+  background-color: #BCB082;
+  color: white;
+  border-style: none; }
 
 .pic-well {
+  margin-top: 50px;
   box-shadow: 3px 3px 5px 6px #F3A329; }
 
 .comment-input {
-  width: 300px;
+  width: 100%;
   height: 35px; }
+
+.input {
+  padding-top: 8px;
+  padding-bottom: 8px; }
+
+.upload-button {
+  padding-top: 8px;
+  padding-bottom: 8px; }
+
+.brags {
+  padding-top: 160px; }
+
+.weather-info {
+  color: #8300ED; }
+
+.post-button {
+  background: -webkit-linear-gradient(#D87B29, #88360F);
+  background: linear-gradient(#D87B29, #88360F);
+  color: white; }
 
 /*# sourceMappingURL=app.css.map */

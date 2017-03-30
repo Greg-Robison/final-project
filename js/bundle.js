@@ -39,7 +39,7 @@ class Footer extends React.Component{
   render(){
     return(
     React.createElement("div", {className: "container"}, 
-      React.createElement("hr", null), 
+      React.createElement("hr", {className: "rule"}), 
       React.createElement("div", {className: "row well footer"}, 
         React.createElement("div", {className: "col-md-4"}, 
           React.createElement("h3", null, "E-Mail us At:"), 
@@ -51,8 +51,8 @@ class Footer extends React.Component{
           "Here at Hooked we practice catch and release, so anglers can enjoy fishing for years to come!")
         ), 
         React.createElement("div", {className: "col-md-4"}, 
-          React.createElement("h3", null, "Something goes here"), 
-          React.createElement("h5", null, "something Else Goes here")
+          React.createElement("h3", null, "South Carolina Bass Fishing"), 
+          React.createElement("h5", null, "for more information on SC Bass fishing click ", React.createElement("a", {href: "http://www.scbassfed.org/", target: "_blank"}, "here."))
         )
       )
     )
@@ -92,19 +92,32 @@ class Header extends React.Component {
   render(){
     var user = User.current();
     return(
+
       React.createElement("div", {className: "container-fluid"}, 
 React.createElement("div", {className: "col-md-12"}, 
     React.createElement("div", {className: "well well-header"}, 
 
-        React.createElement("a", {href: "#"}, React.createElement("img", {className: "logo", alt: "Brand", src: "images/logo1.png"})), 
-        React.createElement("img", {className: "links gif", src: "./images/giphy.gif", alt: ""}), 
-        React.createElement("span", {className: "links"}, React.createElement("a", {href: "", onClick: this.logOut}, " Sign Off")), 
-        React.createElement("span", {className: "links"}, React.createElement("a", {href: "#userrecords/"}, user.get('name') + "'s", " Records")), 
-        React.createElement("span", {className: "links"}, React.createElement("a", {href: "#braggingrites/"}, " Bragging Rites"))
+      React.createElement("a", {href: "#"}, React.createElement("img", {className: "logo", alt: "Brand", src: "images/logo1.png"})), 
+      React.createElement("img", {className: "links gif", src: "./images/giphy.gif", alt: ""}), 
 
+
+      React.createElement("div", {className: "dropdown links"}, 
+
+        React.createElement("a", {className: "dropdown-toggle", type: "button", id: "dropdownMenu1", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "true"}, 
+          React.createElement("h3", {className: "welcome name"}, "Welcome ", user.get('name'))
+
+        ), 
+        React.createElement("ul", {className: "dropdown-menu links", "aria-labelledby": "dropdownMenu1"}, 
+          React.createElement("li", null, React.createElement("a", {className: "links", href: "#braggingrites/"}, " Bragging Rites")), 
+        React.createElement("li", null, React.createElement("a", {className: "links", href: "#userrecords/"}, user.get('name') + "'s", " Records")), 
+          React.createElement("li", null, React.createElement("a", {className: "links", href: "", onClick: this.logOut}, " Sign Off"))
+
+      )
+      )
   )
 )
 )
+
     )
   }
 };
@@ -220,7 +233,7 @@ class LoginContainer extends React.Component{
       React.createElement("div", {className: "container"}, 
         React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-md-5"}, 
-              React.createElement("h1", {className: "welcome"}, "Already a member Log In"), 
+              React.createElement("h1", {className: "welcome si"}, "Already a member Log In"), 
               React.createElement(LoginForm, {action: this.login, submitBtn: "Login"})
           )
 
@@ -366,8 +379,11 @@ class BragBoard extends React.Component {
           React.createElement("div", {className: "container"}, 
             React.createElement("div", {className: "row"}, 
             React.createElement("div", {className: "col-md-12"}, 
-                React.createElement(Header, null), 
-                images
+                React.createElement(Header, null)
+
+            ), 
+            React.createElement("div", {className: "brags"}, 
+              images
             )
             ), 
             React.createElement("div", {className: "container"}
@@ -433,7 +449,7 @@ class BragImage extends React.Component {
       React.createElement("div", {className: "well pic-well"}, 
         React.createElement("a", {href: this.props.image.get('image')}, React.createElement("img", {src: this.props.image.get('image'), alt: "..."})), 
         React.createElement("div", {className: "caption"}, 
-          React.createElement("input", {type: "text", className: "comment-input", name: "comment", value: this.state.comment, onChange: this.handleComment, placeholder: "Comment"}), 
+          React.createElement("div", {className: "input"}, React.createElement("input", {type: "text", className: "comment-input", name: "comment", value: this.state.comment, onChange: this.handleComment, placeholder: "Comment"})), 
 
           React.createElement("p", null, React.createElement("button", {onClick: this.saveComment, className: "add-show btn btn-primary", role: "button"}, "Comment"), React.createElement("button", {"data-toggle": "collapse", "data-target": "#toggle" + this.props.image.cid, className: "add-show btn btn-primary"}, "Show/Hide Comments")), 
           React.createElement("div", {className: "well"}, 
@@ -499,7 +515,9 @@ class Marketing extends React.Component {
                user ? React.createElement(Header, null) : null
           ), 
       React.createElement("div", {className: "container"}, 
+
         React.createElement("div", {className: "row"}, 
+
             React.createElement("span", {className: "signup"}, React.createElement("a", {href: "#signup/"}, React.createElement("button", {className: "signup-btn btn btn-primary"}, React.createElement("img", {src: "./images/button-logo1.png"}), "Sign Up"))), 
               React.createElement("span", {className: "signin"}, React.createElement("a", {href: "#login/"}, React.createElement("button", {className: "signin-btn btn btn-primary"}, React.createElement("img", {src: "./images/button-logo1.png"}), "Sign In")))
 
@@ -508,7 +526,7 @@ class Marketing extends React.Component {
         React.createElement("h1", {className: "current-weather text-center"}, "Current Greenville SC Weather"), 
         React.createElement("div", {className: "weather col-md-12"}, 
 
-          React.createElement("span", {className: "weather-span"}, "Moon Phase", React.createElement("p", null, ".75 Waxing")), 
+          React.createElement("span", {className: "weather-span"}, "Moon Phase", React.createElement("p", null, "Waxing Crescent")), 
           React.createElement("span", {className: "weather-span"}, 
             "Barometric Pressure", 
             React.createElement("p", null, this.state.weather.get('pressure_in')), 
@@ -527,8 +545,10 @@ class Marketing extends React.Component {
 
     React.createElement("div", {className: "container-fluid"}, 
       React.createElement("div", {className: "row"}, 
+        React.createElement("div", {className: "col-md-12"}, 
 
-          React.createElement("img", {className: "logo-bottom", alt: "Brand", src: "images/logo1.png"}), 
+          React.createElement("img", {className: "logo-bottom", alt: "Brand", src: "images/logo1.png"})
+          ), 
             React.createElement("a", {href: "http://www.wunderground.com/US/SC/Greenville.html", target: "_blank"}, React.createElement("button", {className: "signin-btn btn btn-primary forecast"}, React.createElement("img", {src: "./images/button-logo1.png"}), "Forecast"))
 
       )
@@ -1022,20 +1042,20 @@ handleDelete(e, image){
 
           React.createElement("div", {className: "caption"}, 
 
-            React.createElement("button", {className: "action", onClick: () => self.handlePost(image)}, "Post to Bragging Rites"), 
-            React.createElement("input", {type: "text", className: "comment-input", name: "note", value: self.state.name, onChange: self.handleNote, placeholder: "Your Notes", ref: "addNotes"}), 
-            React.createElement("p", null, React.createElement("button", {onClick: (e) => {self.addNote(image)}, className: "add-show btn btn-primary"}, "Add Notes"), React.createElement("button", {"data-toggle": "collapse", "data-target": "#toggles" + image.cid, className: "add-show btn btn-primary"}, "Show Notes"), " ", React.createElement("button", {onClick: (e)=>self.handleDelete(e, image), className: "action btn btn-default"}, "Delete Post")), 
+            React.createElement("div", {className: "post"}, React.createElement("button", {className: "post-button btn btn-default", onClick: () => self.handlePost(image)}, "Post to Bragging Rites")), 
+            React.createElement("div", {className: "input"}, React.createElement("input", {type: "text", className: "comment-input", name: "note", value: self.state.name, onChange: self.handleNote, placeholder: "Your Notes", ref: "addNotes"})), 
+            React.createElement("p", null, React.createElement("button", {onClick: (e) => {self.addNote(image)}, className: "add-show btn post-button"}, "Add Notes"), React.createElement("button", {"data-toggle": "collapse", "data-target": "#toggles" + image.cid, className: "add-show btn post-button"}, "Show Notes"), " ", React.createElement("button", {onClick: (e)=>self.handleDelete(e, image), className: "action btn btn-danger"}, "Delete Post")), 
               React.createElement("ul", null, 
                 React.createElement("li", null, "Date ", date), 
-                React.createElement("li", null, React.createElement("a", {href: "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030", target: "_blank"}, "Weather Info")), 
+                React.createElement("li", null, React.createElement("a", {href: "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030", target: "_blank"}, React.createElement("h3", {className: "weather-info"}, "Weather Info"))), 
                 React.createElement("li", null, "Lat: ", image.get('lat')), 
                 React.createElement("li", null, "Lng: ", image.get('lon')), 
-                React.createElement("li", null, React.createElement("button", {className: "action", "data-toggle": "collapse", "data-target": "#toggle" + image.cid}, "Show/Hide Map"))
-              )
-          )
+                React.createElement("li", null, React.createElement("button", {className: "btn post-button", "data-toggle": "collapse", "data-target": "#toggle" + image.cid}, "Show/Hide Map"))
+              ), 
 
 
-        ), 
+
+
 
         React.createElement("ul", {id: "toggles" + image.cid, className: "collapsing list-group"}, 
 
@@ -1046,9 +1066,11 @@ handleDelete(e, image){
 
 
         React.createElement("ul", {id: "toggle" + image.cid, className: "collapsing map-show"}, 
-          React.createElement("li", {style: {width: 400, height: 500,}}, 
+          React.createElement("li", {style: {width: 330, height: 400,}}, 
             React.createElement(Maps, {center: Location})
           )
+        )
+        )
         )
         )
         )
@@ -1059,20 +1081,24 @@ handleDelete(e, image){
     return(
       React.createElement("div", {className: "wrapper"}, 
         React.createElement("img", {className: "lake5", src: "./images/lake2.jpg", alt: ""}), 
+        React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-md-12"}, 
+
               React.createElement(Header, null)
+
+          )
           ), 
         React.createElement("div", {className: "container"}, 
-          React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "user row"}, 
             React.createElement("div", {className: "col-md-12"}, 
-              React.createElement("h1", {className: "user-data"}, "Keep The Weather Data From Your Fishing Trips"), 
+              React.createElement("h1", {className: "user-data"}, "Track Your Fishing Trips"), 
                 React.createElement("div", {className: "row"}, 
                   React.createElement("div", {className: "col-md-12"}, 
                   React.createElement("form", {encType: "multipart/form-data"}, 
                     React.createElement("input", {type: "file", accept: ".jpeg, .jpg, .gif, .PNG", onChange: this.handleImageChange}), React.createElement("br", null), 
                     React.createElement("img", {src: this.state.preview, height: "250", width: "200", alt: "Your Brag Picture Goes Here"})
                   ), 
-                    React.createElement("span", {className: "upload"}, React.createElement("button", {className: "signup-btn btn btn-primary", onClick: this.handleUpload}, React.createElement("img", {src: "./images/button-logo1.png"}), "Upload Photo")), 
+                    React.createElement("div", {className: "upload-button"}, React.createElement("span", {className: "upload"}, React.createElement("button", {className: "btn post-button", onClick: this.handleUpload}, "Upload Photo"))), 
 
                     images
 
