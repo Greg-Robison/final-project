@@ -28,13 +28,10 @@ font: helvetica;
 }
 .name{
   margin-top: 15px;
+  color: #A55C25;
 }
-.add-show{
-  background-color: #8F00F3;
-}
-.action{
 
-}
+
 .map-show{
   z-index: 200;
   margin-left: -50px;
@@ -55,12 +52,12 @@ li{
 }
 .user-data{
 
-  color: #7E00D7;
-  text-shadow: 1px 1px 1px #000;
+  color: #9A6935;
+  text-shadow: 2px 2px 2px #BAB185;
 }
 .welcome{
-  color: #7E00D7;
-  text-shadow: 2px 2px 2px #F3A329;
+  color: #9A6935;
+  text-shadow: 2px 2px 2px #BAB185;
 }
 .user-name{
   color: #7E00D7;
@@ -112,12 +109,12 @@ li{
 
 }
 .signin-btn{
-  background-color: #9C00F9;
+  background-color: #A1662F;
   border-style: none;
   border-radius: 5px
 }
 .signup-btn{
-  background-color: #9C00F9;
+  background-color: #A1662F;
   border-style: none;
   border-radius: 5px
 
@@ -209,16 +206,15 @@ h1{
 }
 
 .footer{
-  background-color: #BCB082;
-  color: white;
+  background-color: white;
+  color: #9A6935;
   border-style: none;
 }
 
 .pic-well{
   margin-top: 50px;
-  -moz-box-shadow:    3px 3px 5px 6px #F3A329;
-  -webkit-box-shadow: 3px 3px 5px 6px #F3A329;
-  box-shadow:         3px 3px 5px 6px #F3A329;
+  background-color: #BCB082;
+  border-style: none;
 }
 .comment-input{
   width: 100%;
@@ -238,9 +234,16 @@ h1{
   padding-top: 160px;
 }
 .weather-info{
-  color: #8300ED;
+  color: #A1662F;
 }
 .post-button{
   background: linear-gradient(#D87B29, #88360F);
   color: white;
+}
+.add-button{
+  padding-bottom: 8px;
+}
+.set{
+  padding-bottom: 8px;
+
 }

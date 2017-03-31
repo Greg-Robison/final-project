@@ -8,7 +8,7 @@ class Footer extends React.Component{
       <div className="row well footer">
         <div className="col-md-4">
           <h3>E-Mail us At:</h3>
-          <a href="mailto:gjrobison64@gmail.com"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
+          <a href="mailto:gjrobison64@gmail.com"><img className="logo" alt="Brand" src="images/logo3.png" /></a>
         </div>
         <div className="col-md-4">
           <h3>Commited to Preservation</h3>

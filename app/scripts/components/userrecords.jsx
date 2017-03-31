@@ -247,7 +247,9 @@ handleDelete(e, image){
 
             <div className="post"><button className="post-button btn btn-default" onClick={() => self.handlePost(image)}>Post to Bragging Rites</button></div>
             <div className="input"><input type="text" className="comment-input" name="note" value={self.state.name} onChange={self.handleNote} placeholder="Your Notes" ref="addNotes"/></div>
-            <p><button onClick={(e) => {self.addNote(image)}} className="add-show btn post-button">Add Notes</button><button data-toggle="collapse" data-target={"#toggles" + image.cid} className="add-show btn post-button">Show Notes</button> <button onClick={(e)=>self.handleDelete(e, image)} className="action btn btn-danger">Delete Post</button></p>
+            <span><div className="set"><button onClick={(e) => {self.addNote(image)}} className="add-show btn post-button">Add Notes</button>
+            <button data-toggle="collapse" data-target={"#toggles" + image.cid} className="add-show btn post-button">Show Notes</button></div></span>
+             <div className="set"><button onClick={(e)=>self.handleDelete(e, image)} className="action btn btn-danger">Delete Post</button></div>
               <ul>
                 <li>Date {date}</li>
                 <li><a href="http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=MD9030" target="_blank"><h3 className="weather-info">Weather Info</h3></a></li>
@@ -297,10 +299,12 @@ handleDelete(e, image){
               <h1 className="user-data">Track Your Fishing Trips</h1>
                 <div className="row">
                   <div className="col-md-12">
+
                   <form encType="multipart/form-data">
                     <input type="file" accept=".jpeg, .jpg, .gif, .PNG" onChange={this.handleImageChange} /><br />
                     <img src={this.state.preview} height="250" width="200" alt="Your Brag Picture Goes Here" />
                   </form>
+
                     <div className="upload-button"><span className="upload"><button className="btn post-button" onClick={this.handleUpload}>Upload Photo</button></span></div>
 
                     {images}

@@ -34,8 +34,8 @@ class Marketing extends React.Component {
 
         <div className="row">
 
-            <span className="signup"><a href="#signup/"><button className="signup-btn btn btn-primary"><img src="./images/button-logo1.png"/>Sign Up</button></a></span>
-              <span className="signin"><a href="#login/"><button className="signin-btn btn btn-primary"><img src="./images/button-logo1.png"/>Sign In</button></a></span>
+            <span className="signup"><a href="#signup/"><button className="signup-btn btn btn-primary"><img src="./images/logo4.png"/>Sign Up</button></a></span>
+              <span className="signin"><a href="#login/"><button className="signin-btn btn btn-primary"><img src="./images/logo4.png"/>Sign In</button></a></span>
 
     </div>
       <div className="row">
@@ -63,9 +63,9 @@ class Marketing extends React.Component {
       <div className="row">
         <div className="col-md-12">
 
-          <img className="logo-bottom" alt="Brand" src="images/logo1.png" />
+          <img className="logo-bottom" alt="Brand" src="images/logo3.png" />
           </div>
-            <a href="http://www.wunderground.com/US/SC/Greenville.html" target="_blank"><button className="signin-btn btn btn-primary forecast"><img src="./images/button-logo1.png"></img>Forecast</button></a>
+            <a href="http://www.wunderground.com/US/SC/Greenville.html" target="_blank"><button className="signin-btn btn btn-primary forecast"><img src="./images/logo4.png"></img>Forecast</button></a>
 
       </div>
     </div>

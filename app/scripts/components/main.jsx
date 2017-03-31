@@ -149,7 +149,7 @@ class BragImage extends React.Component {
         <div className="caption">
           <div className="input"><input type="text" className="comment-input" name="comment" value={this.state.comment} onChange={this.handleComment} placeholder="Comment"/></div>
 
-          <p><button onClick={this.saveComment} className="add-show btn btn-primary" role="button">Comment</button><button data-toggle="collapse" data-target={"#toggle" + this.props.image.cid} className="add-show btn btn-primary">Show/Hide Comments</button></p>
+          <div className="add-button"><button onClick={this.saveComment} className="add btn post-button" role="button">Comment</button></div><div className="add-button"><button data-toggle="collapse" data-target={"#toggle" + this.props.image.cid} className="add-show btn post-button">Show/Hide Comments</button></div>
           <div className="well">
             <ul id={"toggle" + this.props.image.cid} className="collapse list-group">
 

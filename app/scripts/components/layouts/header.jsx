@@ -30,14 +30,14 @@ class Header extends React.Component {
 <div className="col-md-12">
     <div className="well well-header">
 
-      <a href="#"><img className="logo" alt="Brand" src="images/logo1.png" /></a>
+      <a href="#"><img className="logo" alt="Brand" src="images/logo3.png" /></a>
       <img className="links gif" src="./images/giphy.gif" alt="" />
 
 
       <div className="dropdown links">
 
         <a className="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          <h3 className="welcome name">Welcome {user.get('name')}</h3>
+          <h3 className="name">Welcome {user.get('name')}</h3>
 
         </a>
         <ul className="dropdown-menu links" aria-labelledby="dropdownMenu1">
